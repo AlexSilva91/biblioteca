@@ -1,6 +1,7 @@
 package model.entities;
 
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,8 +14,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Livros implements Serializable{
-	private static final long serialVersionUID = 1L;
+@Entity
+public class Livros {
+	@Id
 	private Integer isbn;
 	private String titulo;
 	private String autor;

@@ -1,17 +1,23 @@
 package testes;
 
-import model.entities.Livros;
+import model.entities.Usuario;
+import model.services.UsuarioService;
 
 public class Teste1 {
 
 	public static void main(String[] args) {
-		Livros livros = new Livros();
-		livros.setAutor("Jonas");
-		livros.setIsbn(123456789);
-		livros.setStatus(false);
-		livros.setLacamento(2019);
-		livros.setTitulo("A volta dos que não foram");
-		System.out.println(livros.toString());
+		Usuario usuario = new Usuario();
+		UsuarioService usuarioService = new UsuarioService();
+		usuario.setNome("Alex");
+		usuario.setCpf(123456);
+		usuario.setContato(123456789);
+		usuario.setStatus(false);
+		try {
+			usuario = usuarioService.saveUsuario(usuario);
+			System.out.println(usuario.toString());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 }
