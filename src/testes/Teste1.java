@@ -14,7 +14,7 @@ public class Teste1 {
 		usuario.setStatus(false);
 		try {
 			usuario = usuarioService.saveUsuario(usuario);
-			System.out.println(usuario.toString());
+			System.out.println("\n" + usuario.toString());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

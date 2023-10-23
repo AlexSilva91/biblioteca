@@ -19,4 +19,8 @@ public class UsuarioService {
 		}
 		return usuario;
 	}
+	
+	public Usuario findById(Integer id) {
+		return this.em.find(Usuario.class, id);
+	}
 }
