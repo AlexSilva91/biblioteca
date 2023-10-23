@@ -1,16 +1,19 @@
-package testes;
+package testes.usuario;
 
 import model.entities.Usuario;
 import model.services.UsuarioService;
 
-public class FindByIdUser {
+public class UpdateUser {
 
 	public static void main(String[] args) {
 		UsuarioService service = new UsuarioService();
+		Usuario user = new Usuario();
 		try {
 			Usuario usuario = service.findById(123456);
-			System.out.println("\n"+usuario.toString());
-		}catch (Exception e) {
+			usuario.setStatus(true);
+			user = service.updateUser(usuario);
+			System.out.println("\n" + user.toString());
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}

@@ -1,4 +1,4 @@
-package testes;
+package testes.usuario;
 
 import model.entities.Usuario;
 import model.services.UsuarioService;
