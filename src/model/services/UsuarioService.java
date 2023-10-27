@@ -27,8 +27,39 @@ public class UsuarioService {
 		return this.em.find(Usuario.class, id);
 	}
 
+	public Usuario findByName(String name) {
+		String jpql = "SELECT u FROM Usuario as u where u.nome =: name";
+		Query query = em.createQuery(jpql, Usuario.class).setParameter("name", name);
+		Usuario usuario = (Usuario) query.getSingleResult();
+		return usuario;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Usuario> listAllFindByRoad(String road) {
+		String jpql = "SELECT u FROM Usuario as u where u.endereco.rua =: road";
+		Query query = em.createQuery(jpql, Usuario.class).setParameter("road", road);
+		List<Usuario> listAllFindByRoad = query.getResultList();
+		return listAllFindByRoad;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Usuario>listAllFindByNeighborhood(String neighborhood) {
+		String jpql = "SELECT u FROM Usuario as u where u.endereco.bairro =: neighborhood";
+		Query query = em.createQuery(jpql, Usuario.class).setParameter("neighborhood", neighborhood);
+		List<Usuario> listAllFindByNeighborhood = query.getResultList();
+		return listAllFindByNeighborhood;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Usuario> listAllFindByCity(String city) {
+		String jpql = "SELECT u FROM Usuario as u where u.endereco.cidade =: city";
+		Query query = em.createQuery(jpql, Usuario.class).setParameter("city", city);
+		List<Usuario> listAllFindByCity = query.getResultList();
+		return listAllFindByCity;
+	}
+
 	public List<Usuario> listUser() {
-		String jpql = "from Usuario c";
+		String jpql = "from Usuario u";
 		Query query = em.createQuery(jpql, Usuario.class);
 		@SuppressWarnings("unchecked")
 		List<Usuario> lisUser = ((List<Usuario>) query.getResultList());

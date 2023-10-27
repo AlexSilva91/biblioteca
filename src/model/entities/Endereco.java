@@ -23,9 +23,9 @@ public class Endereco {
 	@Id
 	private Integer id;
 	private String rua;
-	private String numCasa;
+	private String numero;
 	private String bairro;
 	private String complemento;
-	private String Cidade;
+	private String cidade;
 
 }

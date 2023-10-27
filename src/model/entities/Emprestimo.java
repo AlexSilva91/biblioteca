@@ -1,5 +1,7 @@
 package model.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +28,7 @@ public class Emprestimo {
 	private Usuario usuario;
 	@ManyToOne
 	private Livros livro;
+	private LocalDate data;
 	private String titulo;
 	private Integer numExemplar;
 

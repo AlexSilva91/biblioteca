@@ -20,7 +20,7 @@ public class Livros {
 	private Integer isbn;
 	private String titulo;
 	private String autor;
-	private Integer lacamento;
-	private Integer NumExemplares;
+	private Integer ano;
+	private Integer exemplar;
 	private boolean status;
 }

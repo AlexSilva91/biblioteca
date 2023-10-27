@@ -22,7 +22,7 @@ public class EnderecoService {
 	public Endereco findById(Integer id) {
 		return this.em.find(Endereco.class, id);
 	}
-	
+
 	public Endereco updateEndereco(Endereco endereco) {
 		this.em.getTransaction().begin();
 		this.em.merge(endereco);

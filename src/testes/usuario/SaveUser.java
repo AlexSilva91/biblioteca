@@ -3,7 +3,7 @@ package testes.usuario;
 import model.entities.Usuario;
 import model.services.UsuarioService;
 
-public class Teste1 {
+public class SaveUser {
 
 	public static void main(String[] args) {
 		Usuario usuario = new Usuario();
@@ -11,7 +11,7 @@ public class Teste1 {
 		usuario.setNome("Alex");
 		usuario.setCpf(123456);
 		usuario.setContato(123456789);
-		usuario.setStatus(false);
+		usuario.setStatus(true);
 		try {
 			usuario = usuarioService.saveUsuario(usuario);
 			System.out.println("\n" + usuario.toString());

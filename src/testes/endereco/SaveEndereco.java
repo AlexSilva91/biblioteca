@@ -15,7 +15,7 @@ public class SaveEndereco {
 		endereco.setBairro("Centro");
 		endereco.setCidade("Exu");
 		endereco.setComplemento("Casa");
-		endereco.setNumCasa("142");
+		endereco.setNumero("142");
 		endereco.setRua("Rua Maria F. Castro");
 		try {
 			Usuario usuario = usuarioService.findById(123456);

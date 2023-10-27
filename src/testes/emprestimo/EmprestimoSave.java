@@ -1,5 +1,7 @@
 package testes.emprestimo;
 
+import java.time.LocalDate;
+
 import model.entities.Emprestimo;
 import model.entities.Livros;
 import model.entities.Usuario;
@@ -22,8 +24,9 @@ public class EmprestimoSave {
 			emprestimo.setUsuario(usuario);
 			emprestimo.setLivro(livro);
 			emprestimo.setNumExemplar(1);
-			livro.setNumExemplares(0);
+			livro.setExemplar(0);
 			livro.setStatus(false);
+			emprestimo.setData(LocalDate.now());
 			emprestimo.setTitulo(livro.getTitulo());
 
 			livro = livroService.updateLivro(livro);

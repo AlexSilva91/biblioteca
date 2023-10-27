@@ -30,6 +30,7 @@ public class EmprestimoService {
 		return emprestimo;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Emprestimo> listAllFindByIdUser(Integer id) {
 		Query q = em.createQuery("SELECT e FROM Emprestimo as e where e.usuario.cpf =: id", Emprestimo.class)
 				.setParameter("id", id);
