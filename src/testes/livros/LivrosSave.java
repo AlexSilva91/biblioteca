@@ -11,11 +11,11 @@ public class LivrosSave {
 		
 		try {
 			livro.setAutor("Dan Brown");
-			livro.setIsbn(12);
+			livro.setIsbn(13);
 			livro.setAno(2000);
 			livro.setExemplar(1);
 			livro.setStatus(true);
-			livro.setTitulo("Anjos e demônios");
+			livro.setTitulo("Código da vinci");
 			
 			livro = livroService.saveLivro(livro);
 			System.out.println("\n"+livro.toString()+"\n");

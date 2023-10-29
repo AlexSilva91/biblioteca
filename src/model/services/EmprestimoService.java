@@ -37,6 +37,22 @@ public class EmprestimoService {
 		List<Emprestimo> listAll = q.getResultList();
 		return listAll;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Emprestimo> listAllFindByTitle(String title) {
+		Query q = em.createQuery("SELECT e FROM Emprestimo as e where e.titulo =: title", Emprestimo.class)
+				.setParameter("title", title);
+		List<Emprestimo> listAll = q.getResultList();
+		return listAll;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Emprestimo> listAllFindByStatus(boolean status) {
+		Query q = em.createQuery("SELECT e FROM Emprestimo as e where e.status =: status", Emprestimo.class)
+				.setParameter("status", status);
+		List<Emprestimo> listAll = q.getResultList();
+		return listAll;
+	}
 
 	public Emprestimo findById(Integer id) {
 		return this.em.find(Emprestimo.class, id);

@@ -30,6 +30,7 @@ public class Emprestimo {
 	private Livros livro;
 	private LocalDate data;
 	private String titulo;
-	private Integer numExemplar;
+	private Integer exemplar;
+	private boolean status;
 
 }

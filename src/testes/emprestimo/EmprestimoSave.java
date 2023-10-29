@@ -18,14 +18,15 @@ public class EmprestimoSave {
 		Emprestimo emprestimo = new Emprestimo();
 
 		try {
-			Livros livro = livroService.findById(1234);
+			Livros livro = livroService.findById(12);
 			Usuario usuario = usuarioService.findById(123456);
 
 			emprestimo.setUsuario(usuario);
 			emprestimo.setLivro(livro);
-			emprestimo.setNumExemplar(1);
+			emprestimo.setExemplar(1);
 			livro.setExemplar(0);
-			livro.setStatus(false);
+			livro.setStatus(true);
+			emprestimo.setStatus(true);
 			emprestimo.setData(LocalDate.now());
 			emprestimo.setTitulo(livro.getTitulo());
 
