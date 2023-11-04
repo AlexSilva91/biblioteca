@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -47,11 +48,25 @@
                <font>
                   <Font name="Noto Sans Mono Regular" size="12.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Digite o CPF">
+                     <font>
+                        <Font name="Noto Mono" size="12.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
             </TextField>
             <PasswordField fx:id="txtSenha" prefHeight="24.0" prefWidth="171.0" promptText="Senha" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="Noto Sans Mono Regular" size="12.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Digite sua senha">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
             </PasswordField>
             <Label prefHeight="15.0" prefWidth="118.0" text="Esqueceu sua senha?" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <font>
@@ -62,16 +77,37 @@
                <font>
                   <Font name="Noto Sans Mono Bold" size="8.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Redefinir senha">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
             </Hyperlink>
             <Button fx:id="btnSair" mnemonicParsing="false" onAction="#onBtnSairChangeAction" prefHeight="24.0" prefWidth="60.0" text="Sair" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="Noto Sans Mono Bold" size="12.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Sair">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
             </Button>
             <Button fx:id="btnEntrar" mnemonicParsing="false" onAction="#onBtnEntrarChangeAction" text="Entrar" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="Noto Sans Mono Bold" size="12.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Entrar">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
             </Button>
             <Label alignment="CENTER" contentDisplay="CENTER" text="Alex da Silva Alves" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
                <font>

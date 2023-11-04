@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane layoutX="-5.0" layoutY="-3.0" prefHeight="250.0" prefWidth="400.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="361.0" minWidth="10.0" prefWidth="209.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="106.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="14.0" prefWidth="42.0" text="CPF:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField prefHeight="25.0" prefWidth="248.0" promptText="Confirme seu CPF" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Regular" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <tooltip>
+                  <Tooltip text="Confirme seu CPF">
+                     <font>
+                        <Font name="Noto Mono" size="12.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </TextField>
+            <TextField layoutX="124.0" layoutY="51.0" prefHeight="25.0" prefWidth="235.0" promptText="Nova senha" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="Noto Sans Mono Regular" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Nova senha">
+                     <font>
+                        <Font name="Noto Mono" size="12.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </TextField>
+            <Label layoutX="67.0" layoutY="13.0" prefHeight="24.0" prefWidth="94.0" text="Nova senha:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="204.0" prefHeight="40.0" prefWidth="127.0" text="Redefinir senha" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets top="20.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField layoutX="107.0" layoutY="148.0" prefHeight="25.0" prefWidth="235.0" promptText="Nova senha" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Noto Sans Mono Regular" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Repita senha">
+                     <font>
+                        <Font name="Noto Mono" size="12.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </TextField>
+            <Label layoutX="107.0" layoutY="116.0" prefHeight="22.0" prefWidth="130.0" text="Repita senha:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+      </GridPane>
+      <GridPane alignment="BOTTOM_CENTER" layoutX="-2.0" prefHeight="85.0" prefWidth="407.0" AnchorPane.bottomAnchor="-1.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="86.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="10.0" prefWidth="195.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="108.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="20.0" minHeight="0.0" prefHeight="10.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="54.0" minHeight="0.0" prefHeight="54.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="30.0" minHeight="2.0" prefHeight="21.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+         <children>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Voltar" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Voltar " textAlignment="CENTER">
+                     <font>
+                        <Font name="Noto Mono" size="12.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </Button>
+            <Button layoutX="105.0" layoutY="40.0" mnemonicParsing="false" text="Confirmar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="12.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Confirmar" textAlignment="CENTER">
+                     <font>
+                        <Font name="Noto Mono" size="12.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip>
+            </Button>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
