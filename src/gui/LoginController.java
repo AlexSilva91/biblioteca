@@ -8,6 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import main.Login;
+import main.RedefinirSenha;
 
 public class LoginController implements Initializable {
 	@FXML
@@ -23,7 +26,7 @@ public class LoginController implements Initializable {
 
 	@FXML
 	public void onBtnSairChangeAction() {
-		System.out.println("Saindo...");
+		this.close();
 	}
 
 	@FXML
@@ -32,8 +35,14 @@ public class LoginController implements Initializable {
 	}
 
 	@FXML
-	public void onPrintAction() {
-		System.out.println("\nCPF: " + txtCpf.getText() + "\nSenha: " + txtSenha.getText());
+	public void onLinkRedefinirSenhaAction() {
+		RedefinirSenha redefinirSenha = new RedefinirSenha();
+		this.close();
+		try {
+			redefinirSenha.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -41,4 +50,7 @@ public class LoginController implements Initializable {
 
 	}
 
+	public void close() {
+		Login.getStage().close();
+	}
 }

@@ -73,7 +73,7 @@
                   <Font name="Noto Sans Mono Bold" size="8.0" />
                </font>
             </Label>
-            <Hyperlink fx:id="redefinir" onAction="#onPrintAction" prefHeight="16.0" prefWidth="81.0" text="Redefinir" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+            <Hyperlink fx:id="redefinir" onAction="#onLinkRedefinirSenhaAction" prefHeight="16.0" prefWidth="81.0" text="Redefinir" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="Noto Sans Mono Bold" size="8.0" />
                </font>
