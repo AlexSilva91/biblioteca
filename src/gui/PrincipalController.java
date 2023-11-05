@@ -7,7 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 import main.Principal;
+import main.Sobre;
 
 public class PrincipalController implements Initializable{
 
@@ -54,7 +56,13 @@ public class PrincipalController implements Initializable{
 
 	@FXML
 	void onMenuAjudaSobreAction(ActionEvent event) {
-
+		Sobre sobre = new Sobre();
+		close();
+		try {
+			sobre.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

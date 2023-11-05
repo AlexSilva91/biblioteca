@@ -44,7 +44,6 @@ public class SobreController {
 		AcessarRepository acessarRepository = new AcessarRepository();
 		Thread acessarRepositorio = new Thread(acessarRepository);
 		acessarRepositorio.start();
-		Thread.sleep(5000);
-		acessarRepositorio.stop();
+		Thread.sleep(50);
 	}
 }
