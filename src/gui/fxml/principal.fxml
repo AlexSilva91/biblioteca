@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PrincipalController">
+   <children>
+      <GridPane layoutY="-1.0" prefHeight="35.0" prefWidth="450.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <MenuBar prefHeight="35.0" prefWidth="450.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Usuario">
+                  <items>
+                    <MenuItem fx:id="menuCadastraUsuario" mnemonicParsing="false" onAction="#onMenuCadastraUsuarioAction" text="Cadastrar" />
+                        <MenuItem fx:id="menuBuscaUsuario" mnemonicParsing="false" onAction="#onMenuBuscaUsuarioAction" text="Buscar" />
+                        <MenuItem fx:id="menuAtualizaUsuario" mnemonicParsing="false" onAction="#onMenuAtualizaUsuarioAction" text="Atualizar" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Livros">
+                  <items>
+                        <MenuItem fx:id="menuCadastraLivro" mnemonicParsing="false" onAction="#onMenuCadastraLivroAction" text="Cadastrar" />
+                        <MenuItem fx:id="menuBuscaLivro" mnemonicParsing="false" onAction="#onMenuBuscaLivroAction" text="Buscar" />
+                        <MenuItem fx:id="menuAtualizaLivro" mnemonicParsing="false" onAction="#onMenuAtualizaLivroAction" text="Atualizar" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Emprestimos">
+                    <items>
+                      <MenuItem fx:id="menuEmprestar" mnemonicParsing="false" onAction="#onMenuEmprestarAction" text="Emprestar" />
+                        <MenuItem fx:id="menuDevolucao" mnemonicParsing="false" onAction="#onMenuDevolucaAction" text="Devolução" />
+                        <MenuItem fx:id="menuEmprestimoBuscar" mnemonicParsing="false" onAction="#onMenuEmprestimoBuscarAction" text="Buscar" />
+                        <MenuItem fx:id="menuEmprestimoAtualizar" mnemonicParsing="false" onAction="#onMenuEmprestimoAtualizarAction" text="Atualizar" />
+                    </items>
+                  </Menu>
+                <Menu mnemonicParsing="false" text="Ajuda">
+                  <items>
+                    <MenuItem fx:id="menuAjudaSobre" mnemonicParsing="false" onAction="#onMenuAjudaSobreAction" text="Sobre" />
+                        <MenuItem fx:id="menuAjudaSair" mnemonicParsing="false" onAction="#onMenuAjudaSairAction" text="Sair" />
+                  </items>
+                </Menu>
+              </menus>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </MenuBar>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

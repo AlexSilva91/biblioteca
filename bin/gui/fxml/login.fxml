@@ -122,7 +122,7 @@
             </Label>
             <ImageView fx:id="icon" accessibleRole="TEXT_FIELD" fitHeight="15.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
                <image>
-                  <Image url="@icons/icons8-direitos-autorais-48.png" />
+                  <Image url="@../icons/icons8-direitos-autorais-48.png" />
                </image>
                <GridPane.margin>
                   <Insets bottom="3.0" left="12.0" />

@@ -10,6 +10,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.Login;
+import main.Principal;
 import main.RedefinirSenha;
 
 public class LoginController implements Initializable {
@@ -31,7 +32,7 @@ public class LoginController implements Initializable {
 
 	@FXML
 	public void onBtnEntrarChangeAction() {
-		System.out.println("Entrando...");
+		this.entrar();
 	}
 
 	@FXML
@@ -50,7 +51,16 @@ public class LoginController implements Initializable {
 
 	}
 
-	public void close() {
+	private void close() {
 		Login.getStage().close();
+	}
+	private void entrar() {
+		Principal principal = new Principal();
+		this.close();
+		try {
+			principal.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
