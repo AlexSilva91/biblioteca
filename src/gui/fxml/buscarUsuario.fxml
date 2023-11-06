@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BuscarUsuarioController">
+   <children>
+      <GridPane layoutX="-2.0" layoutY="-2.0" prefHeight="77.0" prefWidth="435.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="38.66666030883789" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="346.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="40.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="24.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="txtId" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="280.0" promptText="Buscar" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Regular" size="12.0" />
+               </font>
+            </TextField>
+            <Button fx:id="btnBuscar" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBtnBuscarAction" prefHeight="25.0" prefWidth="65.0" text="Buscar" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="SOMETIMES">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <font>
+                  <Font name="Noto Sans Mono Regular" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+      <GridPane layoutX="-1.0" layoutY="75.0" prefHeight="243.0" prefWidth="435.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="47.33333396911621" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="368.66668701171875" minWidth="10.0" prefWidth="351.6666564941406" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.33331298828125" minWidth="10.0" prefWidth="49.333343505859375" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="60.666664123535156" minHeight="10.0" prefHeight="48.00000762939453" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="74.66666412353516" minHeight="10.0" prefHeight="45.66667175292969" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="104.33332824707031" minHeight="10.0" prefHeight="49.666656494140625" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="78.33334350585938" minHeight="7.3333282470703125" prefHeight="49.33331298828125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="78.66667175292969" minHeight="10.0" prefHeight="46.66668701171875" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="txtNome" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="150.0" promptText="Nome" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <GridPane.margin>
+                  <Insets top="30.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Noto Mono" size="12.0" />
+               </font>
+            </TextField>
+            <Label text="Nome" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="txtCpf" editable="false" layoutX="58.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="150.0" promptText="CPF" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <GridPane.margin>
+                  <Insets left="170.0" top="30.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Noto Mono" size="12.0" />
+               </font>
+            </TextField>
+            <Label layoutX="58.0" layoutY="10.0" text="CPF" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="170.0" top="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label layoutX="58.0" layoutY="20.0" text="Telefone" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label layoutX="58.0" layoutY="68.0" text="Status" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="170.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="txtTelefone" editable="false" layoutX="58.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="150.0" promptText="Telefone" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Mono" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="25.0" />
+               </GridPane.margin>
+            </TextField>
+            <CheckBox fx:id="CheckAtivo" alignment="CENTER" mnemonicParsing="false" text="Ativo" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <GridPane.margin>
+                  <Insets left="170.0" top="28.5" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Noto Mono" size="12.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="CheckInativo" layoutX="228.0" layoutY="91.0" mnemonicParsing="false" text="Inativo" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <GridPane.margin>
+                  <Insets left="240.0" top="28.5" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Noto Mono" size="12.0" />
+               </font>
+            </CheckBox>
+            <Label layoutX="58.0" layoutY="68.0" text="Cidade" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label layoutX="58.0" layoutY="119.0" text="Bairro" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="170.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="txtCidade" editable="false" layoutX="58.0" layoutY="87.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="150.0" promptText="Cidade" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Mono" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="25.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txtBairro" editable="false" layoutX="58.0" layoutY="139.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="150.0" promptText="Bairro" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Mono" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="170.0" top="25.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label layoutX="53.0" layoutY="112.0" prefHeight="17.0" prefWidth="48.0" text="Rua" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label layoutX="53.0" layoutY="162.0" prefHeight="17.0" prefWidth="48.0" text="Numero" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="170.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="txtRua" editable="false" layoutX="53.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="150.0" promptText="Rua" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Mono" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="25.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txtNumero" editable="false" layoutX="53.0" layoutY="181.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="150.0" promptText="Numero" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Mono" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="170.0" top="25.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label layoutX="53.0" layoutY="161.0" prefHeight="17.0" prefWidth="83.0" text="Complemento" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="txtComplemento" editable="false" layoutX="53.0" layoutY="181.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="323.0" promptText="Complemento" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font name="Noto Mono" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="25.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
