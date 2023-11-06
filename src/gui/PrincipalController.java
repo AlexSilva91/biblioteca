@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import main.CadastrarUsuario;
 import main.Principal;
 import main.Sobre;
 
@@ -92,7 +93,13 @@ public class PrincipalController implements Initializable{
 
 	@FXML
 	void onMenuCadastraUsuarioAction(ActionEvent event) {
-
+		CadastrarUsuario cadastrarUsuario = new CadastrarUsuario();
+		close();
+		try {
+			cadastrarUsuario.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

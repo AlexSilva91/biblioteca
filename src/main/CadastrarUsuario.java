@@ -6,8 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Login extends Application {
-	private static String caminho = "/gui/fxml/login.fxml";
+public class CadastrarUsuario extends Application {
+	private static String caminho = "/gui/fxml/cadastrarUsuario.fxml";
 	private static Stage stage;
 
 	public static void main(String[] args) {
@@ -18,19 +18,17 @@ public class Login extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		try {
-			stage.setTitle("Login");
-			// Não permite redimensionar
+			stage.setTitle("Cadastrar usuário");
 			stage.resizableProperty().setValue(Boolean.FALSE);
 			setStage(stage);
 			
-			Parent login = FXMLLoader.load(getClass().getResource(caminho));
-			Scene scene = new Scene(login);
+			Parent cadastrarUser = FXMLLoader.load(getClass().getResource(caminho));
+			Scene scene = new Scene(cadastrarUser);
 			stage.setScene(scene);
 			stage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public static Stage getStage() {
