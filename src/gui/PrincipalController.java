@@ -8,12 +8,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import main.BuscarUsuario;
-import main.CadastrarUsuario;
 import main.Principal;
 import main.Sobre;
+import main.usuario.AtualizarUsuario;
+import main.usuario.BuscarUsuario;
+import main.usuario.CadastrarUsuario;
 
-public class PrincipalController implements Initializable{
+public class PrincipalController implements Initializable {
 
 	@FXML
 	private MenuItem menuAjudaSair;
@@ -74,7 +75,12 @@ public class PrincipalController implements Initializable{
 
 	@FXML
 	void onMenuAtualizaUsuarioAction(ActionEvent event) {
-
+		AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
+		try {
+			atualizarUsuario.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
@@ -131,8 +137,9 @@ public class PrincipalController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	public void close() {
 		Principal.getStage().close();
 	}

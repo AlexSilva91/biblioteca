@@ -1,4 +1,4 @@
-package gui;
+package gui.usuario;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,8 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import main.CadastrarUsuario;
 import main.Principal;
+import main.usuario.CadastrarUsuario;
 
 public class CadastrarUsuarioController implements Initializable {
 

@@ -1,4 +1,4 @@
-package main;
+package main.usuario;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,8 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class BuscarUsuario extends Application {
-	private static String caminho = "/gui/fxml/buscarUsuario.fxml";
+public class CadastrarUsuario extends Application {
+	private static String caminho = "/gui/fxml/usuario/cadastrarUsuario.fxml";
 	private static Stage stage;
 
 	public static void main(String[] args) {
@@ -18,10 +18,12 @@ public class BuscarUsuario extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		try {
-			stage.setTitle("Buscar usuario");
+			stage.setTitle("Cadastrar usuário");
 			stage.resizableProperty().setValue(Boolean.FALSE);
-			Parent buscar = FXMLLoader.load(getClass().getResource(caminho));
-			Scene scene = new Scene(buscar);
+			setStage(stage);
+			
+			Parent cadastrarUser = FXMLLoader.load(getClass().getResource(caminho));
+			Scene scene = new Scene(cadastrarUser);
 			stage.setScene(scene);
 			stage.show();
 		} catch (Exception e) {
@@ -36,4 +38,5 @@ public class BuscarUsuario extends Application {
 	public static void setStage(Stage stageArg) {
 		stage = stageArg;
 	}
+
 }
