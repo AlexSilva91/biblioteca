@@ -10,6 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import main.Principal;
 import main.Sobre;
+import main.livro.AtualizarLivro;
 import main.livro.BuscarLivro;
 import main.livro.CadastrarLivro;
 import main.usuario.AtualizarUsuario;
@@ -72,7 +73,12 @@ public class PrincipalController implements Initializable {
 
 	@FXML
 	void onMenuAtualizaLivroAction(ActionEvent event) {
-
+		AtualizarLivro atualizarLivro = new AtualizarLivro();
+		try {
+			atualizarLivro.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
