@@ -10,6 +10,8 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import main.Principal;
 import main.Sobre;
+import main.livro.BuscarLivro;
+import main.livro.CadastrarLivro;
 import main.usuario.AtualizarUsuario;
 import main.usuario.BuscarUsuario;
 import main.usuario.CadastrarUsuario;
@@ -85,7 +87,12 @@ public class PrincipalController implements Initializable {
 
 	@FXML
 	void onMenuBuscaLivroAction(ActionEvent event) {
-
+		BuscarLivro buscarLivro = new BuscarLivro();
+		try {
+			buscarLivro.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
@@ -100,7 +107,12 @@ public class PrincipalController implements Initializable {
 
 	@FXML
 	void onMenuCadastraLivroAction(ActionEvent event) {
-
+		CadastrarLivro cadastrarLivro = new CadastrarLivro();
+		try {
+			cadastrarLivro.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
