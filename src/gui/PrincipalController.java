@@ -10,6 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import main.Principal;
 import main.Sobre;
+import main.emprestimo.Emprestar;
 import main.livro.AtualizarLivro;
 import main.livro.BuscarLivro;
 import main.livro.CadastrarLivro;
@@ -139,7 +140,12 @@ public class PrincipalController implements Initializable {
 
 	@FXML
 	void onMenuEmprestarAction(ActionEvent event) {
-
+		Emprestar emprestar = new Emprestar();
+		try {
+			emprestar.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
