@@ -38,8 +38,7 @@
                   <Menu mnemonicParsing="false" text="Emprestimos">
                     <items>
                       <MenuItem fx:id="menuEmprestar" mnemonicParsing="false" onAction="#onMenuEmprestarAction" text="Emprestar" />
-                        <MenuItem fx:id="menuDevolucao" mnemonicParsing="false" onAction="#onMenuDevolucaAction" text="Devolução" />
-                        <MenuItem fx:id="menuEmprestimoBuscar" mnemonicParsing="false" onAction="#onMenuEmprestimoBuscarAction" text="Buscar" />
+                        <MenuItem fx:id="menuDevolucao" mnemonicParsing="false" onAction="#onMenuDevolucaAction" text="Devolver" />
                         <MenuItem fx:id="menuEmprestimoAtualizar" mnemonicParsing="false" onAction="#onMenuEmprestimoAtualizarAction" text="Atualizar" />
                     </items>
                   </Menu>
