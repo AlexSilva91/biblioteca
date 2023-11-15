@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Emprestar extends Application {
+public class Devolucao extends Application {
 	private static String caminho = "/gui/fxml/emprestimo/devolucao.fxml";
 	private static Stage stage;
 
@@ -17,7 +17,7 @@ public class Emprestar extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		try {
-			stage.setTitle("Emprestar livro");
+			stage.setTitle("Devolver livro");
 			stage.resizableProperty().setValue(Boolean.FALSE);
 			setStage(stage);
 			Parent emprestar = FXMLLoader.load(getClass().getResource(caminho));

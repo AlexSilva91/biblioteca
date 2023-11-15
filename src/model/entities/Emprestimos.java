@@ -2,7 +2,6 @@ package model.entities;
 
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,27 +12,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Entity
-public class Emprestimo {
+public class Emprestimos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Integer id;
-	@ManyToOne
-	private Usuario usuario;
-	@ManyToOne
-	private Livros livro;
+	private Integer usuarioId;
+	private Integer livroId;
 	private LocalDate data;
 	private String titulo;
 	private Integer exemplar;
-	private boolean status;
+	private String status;
 
-	public Boolean getStatus() {
-		return status;
-	}
 }

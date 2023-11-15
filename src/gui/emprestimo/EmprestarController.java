@@ -5,25 +5,34 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
 public class EmprestarController {
-	@FXML
-	private Button btnEmprestar;
+    @FXML
+    private Button btnBusca;
 
-	@FXML
-	private ComboBox<?> cBoxLivros;
+    @FXML
+    private Button btnEmprestar;
 
-	@FXML
-	private ComboBox<?> cBoxUsuario;
+    @FXML
+    private ComboBox<?> cBoxLivros;
 
-	@FXML
-	private DatePicker dateDevolucao;
+    @FXML
+    private DatePicker dateDevolucao;
 
-	@FXML
-	private DatePicker dateEmprestimo;
+    @FXML
+    private DatePicker dateEmprestimo;
 
-	@FXML
-	void onBtnEmprestarAction(ActionEvent event) {
+    @FXML
+    private TextField txtBuscaUsuario;
 
-	}	
+    @FXML
+    void onBtnEmprestarAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onBuscaUsuarioAction(ActionEvent event) {
+
+    }
 }
