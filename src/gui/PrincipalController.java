@@ -10,7 +10,9 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import main.Principal;
 import main.Sobre;
+import main.emprestimo.Devolucao;
 import main.emprestimo.Emprestar;
+import main.emprestimo.Renovar;
 import main.livro.AtualizarLivro;
 import main.livro.BuscarLivro;
 import main.livro.CadastrarLivro;
@@ -51,7 +53,7 @@ public class PrincipalController implements Initializable {
 	private MenuItem menuEmprestar;
 
 	@FXML
-	private MenuItem menuEmprestimoAtualizar;
+	private MenuItem menuEmprestimoRenovar;
 
 	@FXML
 	private MenuItem menuEmprestimoBuscar;
@@ -135,7 +137,12 @@ public class PrincipalController implements Initializable {
 
 	@FXML
 	void onMenuDevolucaAction(ActionEvent event) {
-
+		Devolucao devolucao = new Devolucao();
+		try {
+			devolucao.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
@@ -149,13 +156,13 @@ public class PrincipalController implements Initializable {
 	}
 
 	@FXML
-	void onMenuEmprestimoAtualizarAction(ActionEvent event) {
-
-	}
-
-	@FXML
-	void onMenuEmprestimoBuscarAction(ActionEvent event) {
-
+	void onMenuEmprestimoRenovarAction(ActionEvent event) {
+		Renovar renovar = new Renovar();
+		try {
+			renovar.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

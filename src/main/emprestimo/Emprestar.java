@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Emprestar extends Application {
-	private static String caminho = "/gui/fxml/emprestimo/devolucao.fxml";
+	private static String caminho = "/gui/fxml/emprestimo/emprestar.fxml";
 	private static Stage stage;
 
 	public static void main(String[] args) {

@@ -39,7 +39,7 @@
                     <items>
                       <MenuItem fx:id="menuEmprestar" mnemonicParsing="false" onAction="#onMenuEmprestarAction" text="Emprestar" />
                         <MenuItem fx:id="menuDevolucao" mnemonicParsing="false" onAction="#onMenuDevolucaAction" text="Devolver" />
-                        <MenuItem fx:id="menuEmprestimoAtualizar" mnemonicParsing="false" onAction="#onMenuEmprestimoAtualizarAction" text="Atualizar" />
+                        <MenuItem fx:id="menuEmprestimoRenovar" mnemonicParsing="false" onAction="#onMenuEmprestimoRenovarAction" text="Renovar" />
                     </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="Ajuda">

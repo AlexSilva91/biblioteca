@@ -15,6 +15,7 @@ public class Renovar extends Application {
 	}
 
 	@Override
+	
 	public void start(Stage stage) throws Exception {
 		try {
 			stage.setTitle("Renovar emprestimo");
