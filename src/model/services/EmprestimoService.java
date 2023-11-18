@@ -23,7 +23,7 @@ public class EmprestimoService {
 		return emprestimo;
 	}
 
-	public Emprestimo findByIdUser(Integer id) {
+	public Emprestimo findByIdUser(long id) {
 		Query q = em.createQuery("SELECT e FROM Emprestimo as e where e.usuario.cpf =: id", Emprestimo.class)
 				.setParameter("id", id);
 		Emprestimo emprestimo = (Emprestimo) q.getSingleResult();
@@ -31,7 +31,7 @@ public class EmprestimoService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Emprestimo> listAllFindByIdUser(Integer id) {
+	public List<Emprestimo> listAllFindByIdUser(long id) {
 		Query q = em.createQuery("SELECT e FROM Emprestimo as e where e.usuario.cpf =: id", Emprestimo.class)
 				.setParameter("id", id);
 		List<Emprestimo> listAll = q.getResultList();
@@ -54,7 +54,7 @@ public class EmprestimoService {
 		return listAll;
 	}
 
-	public Emprestimo findById(Integer id) {
+	public Emprestimo findById(long id) {
 		return this.em.find(Emprestimo.class, id);
 	}
 

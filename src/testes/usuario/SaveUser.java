@@ -6,18 +6,18 @@ import model.services.UsuarioService;
 public class SaveUser {
 
 	public static void main(String[] args) {
-		
+
 		Usuario usuario = new Usuario();
 		UsuarioService usuarioService = new UsuarioService();
 		usuario.setNome("Alex");
-		usuario.setCpf(123456);
-		usuario.setContato(1234567891);
+		usuario.setCpf(13166456490L);
+		usuario.setContato(87981469865L);
 		usuario.setStatus(true);
 		try {
 			usuario = usuarioService.saveUsuario(usuario);
 			System.out.println("\n" + usuario.toString());
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 

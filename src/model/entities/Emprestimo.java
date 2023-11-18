@@ -23,14 +23,14 @@ import lombok.ToString;
 public class Emprestimo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private Integer id;
+	private long id;
 	@ManyToOne
 	private Usuario usuario;
 	@ManyToOne
 	private Livros livro;
 	private LocalDate data;
 	private String titulo;
-	private Integer exemplar;
+	private long exemplar;
 	private boolean status;
 
 	public Boolean getStatus() {

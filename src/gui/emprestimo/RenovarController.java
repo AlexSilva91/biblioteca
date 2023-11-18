@@ -68,7 +68,7 @@ public class RenovarController {
 				Emprestimos emprestimos = new Emprestimos();
 				emprestimos.setUsuarioId(e.getUsuario().getCpf());
 				emprestimos.setLivroId(e.getLivro().getIsbn());
-				emprestimos.setData(e.getData());
+				emprestimos.setDataIncial(e.getData());
 				emprestimos.setId(e.getId());
 				emprestimos.setExemplar(e.getExemplar());
 				emprestimos.setTitulo(e.getTitulo());

@@ -23,7 +23,7 @@ public class LivroService {
 		return livro;
 	}
 
-	public Livros findById(Integer id) {
+	public Livros findById(long id) {
 		return this.em.find(Livros.class, id);
 	}
 
@@ -45,7 +45,7 @@ public class LivroService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Livros> listAllFindByYear(Integer year) {
+	public List<Livros> listAllFindByYear(long year) {
 		String jpql = "SELECT l FROM Livros as l where l.ano =: year";
 		Query query = em.createQuery(jpql, Livros.class).setParameter("year", year);
 		List<Livros> listAllFindByYear= query.getResultList();

@@ -3,6 +3,7 @@ package model.services;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import connectionFactory.ConnectionFactory;
@@ -23,14 +24,19 @@ public class UsuarioService {
 		return usuario;
 	}
 
-	public Usuario findById(Integer id) {
+	public Usuario findById(long id) {
 		return this.em.find(Usuario.class, id);
 	}
 
 	public Usuario findByName(String name) {
-		String jpql = "SELECT u FROM Usuario as u where u.nome =: name";
-		Query query = em.createQuery(jpql, Usuario.class).setParameter("name", name);
-		Usuario usuario = (Usuario) query.getSingleResult();
+		Usuario usuario = new Usuario();
+		try {
+			String jpql = "SELECT u FROM Usuario as u where u.nome =: name";
+			Query query = em.createQuery(jpql, Usuario.class).setParameter("name", name);
+			usuario = (Usuario) query.getSingleResult();
+		} catch (NoResultException e) {
+			usuario = null;
+		}
 		return usuario;
 	}
 
@@ -43,7 +49,7 @@ public class UsuarioService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Usuario>listAllFindByNeighborhood(String neighborhood) {
+	public List<Usuario> listAllFindByNeighborhood(String neighborhood) {
 		String jpql = "SELECT u FROM Usuario as u where u.endereco.bairro =: neighborhood";
 		Query query = em.createQuery(jpql, Usuario.class).setParameter("neighborhood", neighborhood);
 		List<Usuario> listAllFindByNeighborhood = query.getResultList();

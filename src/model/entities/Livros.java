@@ -17,10 +17,10 @@ import lombok.ToString;
 @Entity
 public class Livros {
 	@Id
-	private Integer isbn;
+	private long isbn;
 	private String titulo;
 	private String autor;
 	private Integer ano;
-	private Integer exemplar;
+	private long exemplar;
 	private boolean status;
 }

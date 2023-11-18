@@ -22,9 +22,7 @@ import model.services.UsuarioService;
 public class CadastrarUsuarioController implements Initializable {
 	private Usuario usuario = new Usuario();
 	private Endereco endereco = new Endereco();
-	private UsuarioService service = new UsuarioService();
-	private EnderecoService enderecoService = new EnderecoService();
-	private UsuarioValidation usuarioValidation = new UsuarioValidation();
+	private UsuarioValidation validation = new UsuarioValidation();
 	@FXML
 	private Button btnCadastrar;
 
@@ -57,27 +55,29 @@ public class CadastrarUsuarioController implements Initializable {
 
 	@FXML
 	void onBtnCadastrarAction(ActionEvent event) {
-		Integer id = Integer.valueOf(txtCpf.getText());
+		long id = Long.valueOf(txtCpf.getText());
 		try {
-			if(usuarioValidation.usuarioExiste(id)) {
-				Alerts.showAlert("Usuário já existe", "Usuário existente!", null, AlertType.ERROR);
-			}else {
-				usuario.setStatus(true);
-				usuario.setCpf(id);
-				usuario.setContato(Integer.valueOf(txtTelefone.getText()));
-				usuario.setNome(txtNome.getText());
-				
-				endereco.setBairro(txtBairro.getText());
-				endereco.setCidade(txtCidade.getText());
-				endereco.setComplemento(txtComplemento.getText());
-				endereco.setRua(txtRua.getText());
-				endereco.setNumero(txtNumero.getText());
-				usuario.setEndereco(endereco);
-				endereco = enderecoService.saveEndereco(endereco);
-				usuario = service.saveUsuario(usuario);
-				Alerts.showAlert("Salvo com sucesso!", "Salvo!", null, AlertType.INFORMATION);
-			}
-		}catch (Exception e) {
+			/**
+			 * Set usuário
+			 */
+			usuario.setCpf(id);
+			usuario.setContato(Long.parseLong(txtTelefone.getText().toLowerCase()));
+			usuario.setNome(txtNome.getText().toLowerCase());
+			/**
+			 * set endereço
+			 */
+			endereco.setBairro(txtBairro.getText().toLowerCase());
+			endereco.setCidade(txtCidade.getText().toLowerCase());
+			endereco.setComplemento(txtComplemento.getText().toLowerCase());
+			endereco.setRua(txtRua.getText().toLowerCase());
+			endereco.setNumero(txtNumero.getText().toLowerCase());
+			/**
+			 * Salva usuário e endereço (caso não seja nulo) 
+			 * E limpa os campos preenchidos
+			 */
+			validation.saveUser(usuario, endereco);
+			this.setTexts();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -97,6 +97,17 @@ public class CadastrarUsuarioController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void setTexts() {
+		txtBairro.setText("");
+		txtCidade.setText("");
+		txtComplemento.setText("");
+		txtCpf.setText("");
+		txtNome.setText("");
+		txtNumero.setText("");
+		txtRua.setText("");
+		txtTelefone.setText("");
 	}
 
 	public void close() {

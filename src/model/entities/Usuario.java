@@ -18,11 +18,14 @@ import lombok.ToString;
 @Entity
 public class Usuario {
 	@Id
-	private Integer cpf;
+	private long cpf;
 	private String nome;
 	@ManyToOne
 	private Endereco endereco;
 	private boolean status;
-	private Integer contato;
+	private long contato;
 	
+	public boolean getStatus() {
+		return this.status;
+	}
 }

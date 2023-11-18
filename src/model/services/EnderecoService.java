@@ -19,7 +19,7 @@ public class EnderecoService {
 		return endereco;
 	}
 
-	public Endereco findById(Integer id) {
+	public Endereco findById(long id) {
 		return this.em.find(Endereco.class, id);
 	}
 
