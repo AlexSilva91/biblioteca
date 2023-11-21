@@ -9,8 +9,8 @@ public class UpdateUser {
 		UsuarioService service = new UsuarioService();
 		Usuario user = new Usuario();
 		try {
-			Usuario usuario = service.findById(123456);
-			usuario.setStatus(true);
+			Usuario usuario = service.findById(13166456490L);
+			usuario.setStatus(false);
 			user = service.updateUser(usuario);
 			System.out.println("\n" + user.toString());
 		} catch (Exception e) {

@@ -3,15 +3,19 @@ package gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import gui.util.Alerts;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import main.Login;
 import main.Principal;
 import main.RedefinirSenha;
+import main.validations.UsuarioValidation;
 
 public class LoginController implements Initializable {
 	@FXML
@@ -24,6 +28,7 @@ public class LoginController implements Initializable {
 	private TextField txtSenha;
 	@FXML
 	private Hyperlink redefinir;
+	private UsuarioValidation usuarioValidation = new UsuarioValidation();
 
 	@FXML
 	public void onBtnSairChangeAction() {
@@ -32,6 +37,12 @@ public class LoginController implements Initializable {
 
 	@FXML
 	public void onBtnEntrarChangeAction() {
+//		if (usuarioValidation.validLogin(txtCpf.getText(), txtSenha.getText())) {
+//			this.entrar();
+//		} else {
+//			Alerts.showAlert("ERRO!", "Login inválido!", null, AlertType.ERROR);
+//		}
+		
 		this.entrar();
 	}
 
@@ -47,13 +58,14 @@ public class LoginController implements Initializable {
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		//mascaraCPF(txtCpf);
 
 	}
 
 	private void close() {
 		Login.getStage().close();
 	}
+
 	private void entrar() {
 		Principal principal = new Principal();
 		this.close();
@@ -62,5 +74,58 @@ public class LoginController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void mascaraCPF(TextField textField) {
+
+		textField.setOnKeyTyped((KeyEvent event) -> {
+			if ("0123456789".contains(event.getCharacter()) == false) {
+				event.consume();
+			}
+
+			if (event.getCharacter().trim().length() == 0) { // apagando
+
+				if (textField.getText().length() == 4) {
+					textField.setText(textField.getText().substring(0, 3));
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 8) {
+					textField.setText(textField.getText().substring(0, 7));
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 12) {
+					textField.setText(textField.getText().substring(0, 11));
+					textField.positionCaret(textField.getText().length());
+				}
+
+			} else { // escrevendo
+
+				if (textField.getText().length() == 14)
+					event.consume();
+
+				if (textField.getText().length() == 3) {
+					textField.setText(textField.getText() + ".");
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 7) {
+					textField.setText(textField.getText() + ".");
+					textField.positionCaret(textField.getText().length());
+				}
+				if (textField.getText().length() == 11) {
+					textField.setText(textField.getText() + "-");
+					textField.positionCaret(textField.getText().length());
+				}
+
+			}
+		});
+
+		textField.setOnKeyReleased((KeyEvent evt) -> {
+
+			if (!textField.getText().matches("\\d.-*")) {
+				textField.setText(textField.getText().replaceAll("[^\\d.-]", ""));
+				textField.positionCaret(textField.getText().length());
+			}
+		});
+
 	}
 }

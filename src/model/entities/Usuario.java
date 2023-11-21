@@ -1,5 +1,6 @@
 package model.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -20,7 +21,7 @@ public class Usuario {
 	@Id
 	private long cpf;
 	private String nome;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 	private boolean status;
 	private long contato;

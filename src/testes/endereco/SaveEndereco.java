@@ -18,7 +18,7 @@ public class SaveEndereco {
 		endereco.setNumero("142");
 		endereco.setRua("Rua Maria F. Castro");
 		try {
-			Usuario usuario = usuarioService.findById(123456);
+			Usuario usuario = usuarioService.findById(13166456490L);
 			usuario.setEndereco(endereco);
 			/**
 			 * Primeiro salva o endereço depois atualiza o usuário
