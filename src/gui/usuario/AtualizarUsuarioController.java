@@ -82,7 +82,9 @@ public class AtualizarUsuarioController {
 		this.endereco.setComplemento(txtComplemento.getText().toLowerCase());
 		this.endereco.setRua(txtRua.getText().toLowerCase());
 		this.endereco.setNumero(txtNumero.getText().toLowerCase());
-		this.usuario.setEndereco(endereco);
+		if (endereco != null) {
+			this.usuario.setEndereco(endereco);
+		}
 		/**
 		 * Salva usuário e endereço (caso não seja nulo) E limpa os campos preenchidos
 		 */

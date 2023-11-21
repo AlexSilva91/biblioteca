@@ -55,13 +55,12 @@ public class CadastrarUsuarioController implements Initializable {
 
 	@FXML
 	void onBtnCadastrarAction(ActionEvent event) {
-		long id = Long.valueOf(txtCpf.getText());
 		try {
 			/**
 			 * Set usuário
 			 */
-			usuario.setCpf(id);
-			usuario.setContato(Long.parseLong(txtTelefone.getText().toLowerCase()));
+			usuario.setCpf(Long.valueOf(txtCpf.getText()));
+			usuario.setContato(Long.parseLong(txtTelefone.getText()));
 			usuario.setNome(txtNome.getText().toLowerCase());
 			/**
 			 * set endereço
@@ -71,9 +70,10 @@ public class CadastrarUsuarioController implements Initializable {
 			endereco.setComplemento(txtComplemento.getText().toLowerCase());
 			endereco.setRua(txtRua.getText().toLowerCase());
 			endereco.setNumero(txtNumero.getText().toLowerCase());
+			endereco.setIdUser(Long.valueOf(txtCpf.getText()));
+			usuario.setEndereco(endereco);
 			/**
-			 * Salva usuário e endereço (caso não seja nulo) 
-			 * E limpa os campos preenchidos
+			 * Salva usuário e endereço (caso não seja nulo) E limpa os campos preenchidos
 			 */
 			validation.saveUser(usuario, endereco);
 			this.setTexts();

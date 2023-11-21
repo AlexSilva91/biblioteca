@@ -25,6 +25,7 @@ public class EnderecoService {
 	public Endereco findById(long id) {
 		return this.em.find(Endereco.class, id);
 	}
+
 	public Endereco findByidUser(Long idUser) {
 		Endereco endereco = new Endereco();
 		try {
@@ -32,11 +33,11 @@ public class EnderecoService {
 			Query query = em.createQuery(jpql, Endereco.class).setParameter("idUser", idUser);
 			endereco = (Endereco) query.getSingleResult();
 		} catch (NoResultException e) {
-			endereco = null;
 			e.printStackTrace();
 		}
 		return endereco;
 	}
+
 	public Endereco updateEndereco(Endereco endereco) {
 		this.em.getTransaction().begin();
 		this.em.merge(endereco);

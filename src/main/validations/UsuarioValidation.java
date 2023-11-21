@@ -41,19 +41,18 @@ public class UsuarioValidation {
 	public Usuario saveUser(Usuario usuarioArg, Endereco enderecoArg) {
 		try {
 			if (usuarioExiste(usuarioArg.getCpf())) {
-				Alerts.showAlert("Usuário já existe", "Usuário existente!", null, AlertType.ERROR);
+				Alerts.showAlert("Erro!", "Usuário existente!", null, AlertType.ERROR);
 			} else {
+				usuarioArg.setStatus(true);
 				/**
 				 * checa se o endereço não é nulo caso não seja nulo irá salvá-lo linkando com o
 				 * usuário
 				 */
+				service.saveUsuario(usuarioArg);
 				if (enderecoArg != null) {
-					this.endereco = enderecoService.saveEndereco(enderecoArg);
+					enderecoService.saveEndereco(enderecoArg);
 				}
-				usuarioArg.setStatus(true);
-				usuarioArg.setEndereco(enderecoArg);
-				this.usuario = service.saveUsuario(usuarioArg);
-				Alerts.showAlert("Salvo!", "", null, AlertType.INFORMATION);
+				Alerts.showAlert("Salvo!", "Salvo com sucesso!", null, AlertType.INFORMATION);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -74,21 +73,49 @@ public class UsuarioValidation {
 
 	public boolean atualizarUsuario(Usuario userArg) {
 		boolean salvo = false;
-		if (usuarioExiste(userArg.getCpf())) {
-			this.usuario = this.buscaUsuario(String.valueOf(userArg.getCpf()));
-			this.endereco = this.enderecoService.findByidUser(usuario.getCpf());
-			System.out.println(endereco.toString());
-			if (this.endereco != null) {
-				this.endereco.setBairro(userArg.getEndereco().getBairro());
-				this.endereco.setCidade(userArg.getEndereco().getCidade());
-				this.endereco.setComplemento(userArg.getEndereco().getComplemento());
-				this.endereco.setNumero(userArg.getEndereco().getNumero());
-				this.endereco.setRua(userArg.getEndereco().getRua());
+		try {
+			if (usuarioExiste(userArg.getCpf())) {
+				this.usuario = this.buscaUsuario(String.valueOf(userArg.getCpf()));
+				this.service.updateUser(usuario);
+				salvo = true;
 			}
-			this.usuario.setEndereco(endereco);
-			//this.enderecoService.updateEndereco(endereco);
-			this.service.updateUser(usuario);
-			salvo = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return salvo;
+	}
+
+	public boolean atualizarUsuarioEndereco(Usuario userArg) {
+		boolean salvo = false;
+		try {
+			if (usuarioExiste(userArg.getCpf())) {
+				this.usuario = this.buscaUsuario(String.valueOf(userArg.getCpf()));
+				this.endereco = this.enderecoService.findByidUser(usuario.getCpf());
+				if (this.endereco != null) {
+					this.endereco = userArg.getEndereco();
+					this.endereco.setIdUser(userArg.getCpf());
+					this.usuario.setEndereco(endereco);
+					this.enderecoService.updateEndereco(endereco);
+				}
+				this.service.updateUser(usuario);
+				salvo = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return salvo;
+	}
+
+	public boolean atualizar(Usuario usuarioArg) {
+		boolean salvo = false;
+		try {
+			if (usuarioArg.getEndereco() != null) {
+				this.atualizarUsuarioEndereco(usuarioArg);
+			} else {
+				this.atualizarUsuario(usuarioArg);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return salvo;
 	}
