@@ -2,11 +2,10 @@ package main.validations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
-import connectionFactory.ConnectionFactory;
 import gui.util.Alerts;
 import javafx.scene.control.Alert.AlertType;
 import model.entities.Endereco;
@@ -61,10 +60,16 @@ public class UsuarioValidation {
 	}
 
 	public Usuario buscaUsuario(String arg) throws NoResultException {
-		if (this.validNumber(arg)) {
-			this.usuario = service.findById(Long.parseLong(arg));
-		} else if (this.validLetras(arg)) {
-			this.usuario = service.findByName(arg.toLowerCase());
+		/**
+		 * valida se o que foi digitado são apenas números ou letras casa não retorna o
+		 * erro.
+		 */
+		if (this.isValidInputLetter(arg) || this.isValidInputNum(arg)) {
+			if (this.validNumber(arg)) {
+				this.usuario = service.findById(Long.parseLong(arg));
+			} else if (this.validLetras(arg)) {
+				this.usuario = service.findByName(arg.toLowerCase());
+			}
 		} else {
 			Alerts.showAlert("ERRO!", "Opção inválida!", null, AlertType.ERROR);
 		}
@@ -142,6 +147,16 @@ public class UsuarioValidation {
 			}
 		}
 		return false;
+	}
+
+	private boolean isValidInputLetter(String text) {
+		// Verifica se a entrada contém apenas letras
+		return Pattern.matches("[a-zA-Z]*", text);
+	}
+
+	private boolean isValidInputNum(String text) {
+		// Verifica se a entrada contém apenas números
+		return Pattern.matches("\\d*", text);
 	}
 
 	/**
