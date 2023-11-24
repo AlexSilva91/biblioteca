@@ -19,7 +19,6 @@ public class SaveEndereco {
 		endereco.setRua("Rua Maria F. Castro");
 		try {
 			Usuario usuario = usuarioService.findById(13166456490L);
-			usuario.setEndereco(endereco);
 			/**
 			 * Primeiro salva o endereço depois atualiza o usuário
 			 */
@@ -27,7 +26,6 @@ public class SaveEndereco {
 			usuario = usuarioService.updateUser(usuario);
 			System.out.println("\n" + usuario.toString());
 			System.out.println("\n" + endereco.toString());
-			System.out.println("\n" + usuario.getEndereco().getCidade().toUpperCase());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

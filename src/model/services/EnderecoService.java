@@ -40,6 +40,7 @@ public class EnderecoService {
 
 	public Endereco updateEndereco(Endereco endereco) {
 		this.em.getTransaction().begin();
+		this.em.detach(endereco);
 		this.em.merge(endereco);
 		this.em.getTransaction().commit();
 		return endereco;

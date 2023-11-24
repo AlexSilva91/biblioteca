@@ -1,10 +1,10 @@
 package main.validations;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.persistence.NoResultException;
+
+import org.jboss.jandex.ThrowsTypeTarget;
 
 import gui.util.Alerts;
 import javafx.scene.control.Alert.AlertType;
@@ -15,10 +15,9 @@ import model.services.UsuarioService;
 
 public class UsuarioValidation {
 	private UsuarioService service = new UsuarioService();
-	private List<Usuario> listUsuarios = new ArrayList<>();
 	private Usuario usuario = new Usuario();
 	private Endereco endereco = new Endereco();
-	private EnderecoService enderecoService = new EnderecoService();
+	private EnderecoValidations enderecoValidation = new EnderecoValidations();
 
 	public Boolean usuarioExiste(long id) {
 		boolean existe = false;
@@ -37,7 +36,7 @@ public class UsuarioValidation {
 		return existe;
 	}
 
-	public Usuario saveUser(Usuario usuarioArg, Endereco enderecoArg) {
+	public Usuario saveUser(Usuario usuarioArg) {
 		try {
 			if (usuarioExiste(usuarioArg.getCpf())) {
 				Alerts.showAlert("Erro!", "Usuário existente!", null, AlertType.ERROR);
@@ -48,9 +47,6 @@ public class UsuarioValidation {
 				 * usuário
 				 */
 				service.saveUsuario(usuarioArg);
-				if (enderecoArg != null) {
-					enderecoService.saveEndereco(enderecoArg);
-				}
 				Alerts.showAlert("Salvo!", "Salvo com sucesso!", null, AlertType.INFORMATION);
 			}
 		} catch (Exception e) {
@@ -59,65 +55,43 @@ public class UsuarioValidation {
 		return usuario;
 	}
 
-	public Usuario buscaUsuario(String arg) throws NoResultException {
+	public Usuario buscaUsuario(String arg) throws NoResultException, NumberFormatException {
 		/**
 		 * valida se o que foi digitado são apenas números ou letras casa não retorna o
 		 * erro.
 		 */
-		if (this.isValidInputLetter(arg) || this.isValidInputNum(arg)) {
+		// if (this.isValidInputLetter(arg) || this.isValidInputNum(arg)) {
+		try {
+			System.out.println("busca usuário\n" + this.isValidInputLetter(arg) + this.isValidInputNum(arg));
 			if (this.validNumber(arg)) {
 				this.usuario = service.findById(Long.parseLong(arg));
-			} else if (this.validLetras(arg)) {
+			}
+			if (this.validLetras(arg)) {
 				this.usuario = service.findByName(arg.toLowerCase());
 			}
-		} else {
-			Alerts.showAlert("ERRO!", "Opção inválida!", null, AlertType.ERROR);
+			// } else {
+			// Alerts.showAlert("ERRO!", "Opção inválida!", null, AlertType.ERROR);
+			// }
+		} catch (Exception e) {
+			Alerts.showAlert("ERRO!", "Usuário não encontrado!", null, AlertType.ERROR);
+			e.printStackTrace();
 		}
 		return this.usuario;
 	}
 
-	public boolean atualizarUsuario(Usuario userArg) {
+	public boolean atualizarUsuario(Usuario userArg, Endereco enderecoArg) {
 		boolean salvo = false;
 		try {
 			if (usuarioExiste(userArg.getCpf())) {
 				this.usuario = this.buscaUsuario(String.valueOf(userArg.getCpf()));
-				this.service.updateUser(usuario);
-				salvo = true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return salvo;
-	}
-
-	public boolean atualizarUsuarioEndereco(Usuario userArg) {
-		boolean salvo = false;
-		try {
-			if (usuarioExiste(userArg.getCpf())) {
-				this.usuario = this.buscaUsuario(String.valueOf(userArg.getCpf()));
-				this.endereco = this.enderecoService.findByidUser(usuario.getCpf());
-				if (this.endereco != null) {
-					this.endereco = userArg.getEndereco();
-					this.endereco.setIdUser(userArg.getCpf());
-					this.usuario.setEndereco(endereco);
-					this.enderecoService.updateEndereco(endereco);
+				if (this.usuario != null) {
+					enderecoArg.setIdUser(this.usuario.getCpf());
+					this.enderecoValidation.updateEndereco(enderecoArg);
 				}
-				this.service.updateUser(usuario);
-				salvo = true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return salvo;
-	}
+				this.usuario = userArg;
+				this.service.updateUser(this.usuario);
 
-	public boolean atualizar(Usuario usuarioArg) {
-		boolean salvo = false;
-		try {
-			if (usuarioArg.getEndereco() != null) {
-				this.atualizarUsuarioEndereco(usuarioArg);
-			} else {
-				this.atualizarUsuario(usuarioArg);
+				salvo = true;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

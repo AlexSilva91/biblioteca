@@ -17,23 +17,20 @@ public class UpdateUser2 {
 
 		try {
 			/* pesquisa o endereço por meio do id contido no usuário */
-			user = usuarioService.buscaUsuario("13166456490");
-			System.out.println("\n" + user.getEndereco().getId());
-			endereco = service.findById(user.getEndereco().getId());
+			user = usuarioService.buscaUsuario("alex");
+			endereco = service.findByidUser(user.getCpf());
 			System.out.println(user.toString());
 			
 			
 			/* seta as alteções e salva no banco*/
-			endereco.setCidade("bdc");
-			user.setEndereco(endereco);
-			usuarioService.atualizarUsuario(user);
+			endereco.setCidade("maracanaú");
+			user.setStatus(false);
+			usuarioService.atualizarUsuario(user, endereco);
 
 			
-			user = usuarioService.buscaUsuario("13166456490");
-			System.out.println("\n" + user.getEndereco().getId());
-			endereco = service.findById(user.getEndereco().getId());
+			user = usuarioService.buscaUsuario("alex");
+			endereco = service.findByidUser(user.getCpf());
 			System.out.println(user.toString());
-			System.out.println("\nAcessando pelo cliente: " + user.getEndereco().getCidade());
 			System.out.println("\nAcessando pelo endereço: " + endereco.getCidade());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

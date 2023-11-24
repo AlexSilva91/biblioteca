@@ -7,11 +7,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import main.validations.EnderecoValidations;
 import main.validations.UsuarioValidation;
+import model.entities.Endereco;
 import model.entities.Usuario;
 
 public class BuscarUsuarioController {
 	private Usuario usuario = new Usuario();
+	private Endereco endereco = new Endereco();
 	@FXML
 	private CheckBox CheckAtivo;
 
@@ -55,20 +58,20 @@ public class BuscarUsuarioController {
 		 * CheckInativo.setDisable(true);
 		 */
 		UsuarioValidation usuarioValidation = new UsuarioValidation();
+		EnderecoValidations enderecoValidation = new EnderecoValidations();
 		clearTexts();
 		try {
 			this.usuario = usuarioValidation.buscaUsuario(txtId.getText());
 			if (this.usuario != null) {
-				setTexts(usuario);
-			}else {
-				Alerts.showAlert("ERRO!", "Usuário não encontrado!", null, AlertType.ERROR);
+				this.endereco = enderecoValidation.getEnderecoFindByIdUser(usuario.getCpf());
+				setTexts(this.usuario, this.endereco);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void setTexts(Usuario usuario) {
+	public void setTexts(Usuario usuario, Endereco endereco) {
 		txtNome.setText(usuario.getNome());
 		txtCpf.setText(Long.toString(usuario.getCpf()));
 		txtTelefone.setText(Long.toString(usuario.getContato()));
@@ -81,12 +84,12 @@ public class BuscarUsuarioController {
 			CheckInativo.setSelected(true);
 			CheckInativo.setDisable(true);
 		}
-		if (usuario.getEndereco() != null) {
-			txtBairro.setText(usuario.getEndereco().getBairro());
-			txtCidade.setText(usuario.getEndereco().getCidade());
-			txtComplemento.setText(usuario.getEndereco().getComplemento());
-			txtNumero.setText(usuario.getEndereco().getNumero());
-			txtRua.setText(usuario.getEndereco().getRua());
+		if (endereco != null) {
+			txtBairro.setText(endereco.getBairro());
+			txtCidade.setText(endereco.getCidade());
+			txtComplemento.setText(endereco.getComplemento());
+			txtNumero.setText(endereco.getNumero());
+			txtRua.setText(endereco.getRua());
 		}
 	}
 

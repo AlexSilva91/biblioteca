@@ -1,22 +1,29 @@
 package gui.usuario;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import gui.util.Alerts;
+import gui.util.Constraints;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import main.validations.EnderecoValidations;
 import main.validations.UsuarioValidation;
 import model.entities.Endereco;
 import model.entities.Usuario;
 import model.services.EnderecoService;
 import model.services.UsuarioService;
 
-public class AtualizarUsuarioController {
+public class AtualizarUsuarioController implements Initializable {
 	private Usuario usuario = new Usuario();
 	private Endereco endereco = new Endereco();
 	private UsuarioValidation usuarioValidation = new UsuarioValidation();
+	private EnderecoValidations enderecoValidations = new EnderecoValidations();
 
 	@FXML
 	private CheckBox CheckAtivo;
@@ -62,49 +69,46 @@ public class AtualizarUsuarioController {
 		/**
 		 * Set usuário
 		 */
-		this.usuario.setCpf(Long.parseLong(txtCpf.getText()));
-		this.usuario.setContato(Long.parseLong(txtTelefone.getText()));
-		this.usuario.setNome(txtNome.getText().toLowerCase());
-
-		if (CheckAtivo.selectedProperty().getValue()) {
+		this.usuario.setCpf(Long.parseLong(this.txtCpf.getText()));
+		this.usuario.setContato(Long.parseLong(this.txtTelefone.getText()));
+		this.usuario.setNome(this.txtNome.getText().toLowerCase());
+		if (this.CheckAtivo.selectedProperty().getValue()) {
 			this.usuario.setStatus(true);
-			System.out.println("\nCheckAtivo -> " + CheckAtivo.selectedProperty().getValue());
+			System.out.println("\nCheckAtivo -> " + this.CheckAtivo.selectedProperty().getValue());
 		}
-		if (CheckInativo.selectedProperty().getValue()) {
+		if (this.CheckInativo.selectedProperty().getValue()) {
 			this.usuario.setStatus(false);
-			System.out.println("\nCheckInativo -> " + CheckInativo.selectedProperty().getValue());
+			System.out.println("\nCheckInativo -> " + this.CheckInativo.selectedProperty().getValue());
 		}
 		/**
 		 * set endereço
 		 */
-		this.endereco.setBairro(txtBairro.getText().toLowerCase());
-		this.endereco.setCidade(txtCidade.getText().toLowerCase());
-		this.endereco.setComplemento(txtComplemento.getText().toLowerCase());
-		this.endereco.setRua(txtRua.getText().toLowerCase());
-		this.endereco.setNumero(txtNumero.getText().toLowerCase());
-		if (endereco != null) {
-			this.usuario.setEndereco(endereco);
-		}
+		this.endereco.setBairro(this.txtBairro.getText().toLowerCase());
+		this.endereco.setCidade(this.txtCidade.getText().toLowerCase());
+		this.endereco.setComplemento(this.txtComplemento.getText().toLowerCase());
+		this.endereco.setRua(this.txtRua.getText().toLowerCase());
+		this.endereco.setNumero(this.txtNumero.getText().toLowerCase());
 		/**
 		 * Salva usuário e endereço (caso não seja nulo) E limpa os campos preenchidos
 		 */
-		System.out.println(usuario.getEndereco().getId());
 
-		if (this.usuarioValidation.atualizarUsuario(usuario)) {
+		System.out.println(this.endereco.getIdUser() + "\n" + this.endereco.getIdUser());
+
+		if (this.usuarioValidation.atualizarUsuario(this.usuario, this.endereco)) {
 			Alerts.showAlert("Atualizado!", "Dados atualizados!", null, AlertType.INFORMATION);
 		} else {
 			Alerts.showAlert("Erro!", "Impossível atualizar dados!", null, AlertType.ERROR);
 		}
-
 	}
 
 	@FXML
 	void onBtnBuscarAction(ActionEvent event) {
 		clearTexts();
 		try {
-			this.usuario = usuarioValidation.buscaUsuario(txtId.getText());
+			this.usuario = usuarioValidation.buscaUsuario(this.txtId.getText());
 			if (this.usuario != null) {
-				setTexts(usuario);
+				this.endereco = enderecoValidations.getEnderecoFindByIdUser(this.usuario.getCpf());
+				setTexts(this.usuario, this.endereco);
 			} else {
 				Alerts.showAlert("ERRO!", "Usuário não encontrado!", null, AlertType.ERROR);
 			}
@@ -113,7 +117,7 @@ public class AtualizarUsuarioController {
 		}
 	}
 
-	public void setTexts(Usuario usuario) {
+	public void setTexts(Usuario usuario, Endereco endereco) {
 		txtNome.setText(usuario.getNome());
 		txtCpf.setText(Long.toString(usuario.getCpf()));
 		txtCpf.setDisable(true);
@@ -127,12 +131,12 @@ public class AtualizarUsuarioController {
 			CheckInativo.setSelected(true);
 			CheckInativo.setDisable(false);
 		}
-		if (usuario.getEndereco() != null) {
-			txtBairro.setText(usuario.getEndereco().getBairro());
-			txtCidade.setText(usuario.getEndereco().getCidade());
-			txtComplemento.setText(usuario.getEndereco().getComplemento());
-			txtNumero.setText(usuario.getEndereco().getNumero());
-			txtRua.setText(usuario.getEndereco().getRua());
+		if (endereco != null) {
+			txtBairro.setText(endereco.getBairro());
+			txtCidade.setText(endereco.getCidade());
+			txtComplemento.setText(endereco.getComplemento());
+			txtNumero.setText(endereco.getNumero());
+			txtRua.setText(endereco.getRua());
 		}
 	}
 
@@ -149,5 +153,32 @@ public class AtualizarUsuarioController {
 		txtComplemento.setText("");
 		txtNumero.setText("");
 		txtRua.setText("");
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		Constraints.setTextFieldMaxLength(txtTelefone, 10);
+		Constraints.setTextFieldInterger(txtTelefone);
+		// Adiciona ouvinte para o CheckBox 1
+		CheckAtivo.selectedProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue) {
+				// Se o CheckBox 1 for selecionado, desativa o CheckBox 2
+				CheckInativo.setDisable(true);
+			} else {
+				// Se o CheckBox 1 for desselecionado, reativa o CheckBox 2
+				CheckInativo.setDisable(false);
+			}
+		});
+
+		// Adiciona ouvinte para o CheckBox 2
+		CheckInativo.selectedProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue) {
+				// Se o CheckBox 2 for selecionado, desativa o CheckBox 1
+				CheckAtivo.setDisable(true);
+			} else {
+				// Se o CheckBox 2 for desselecionado, reativa o CheckBox 1
+				CheckAtivo.setDisable(false);
+			}
+		});
 	}
 }

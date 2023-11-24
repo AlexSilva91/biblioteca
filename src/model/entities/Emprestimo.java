@@ -24,16 +24,16 @@ public class Emprestimo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private long id;
-	@ManyToOne
-	private Usuario usuario;
-	@ManyToOne
-	private Livros livro;
-	private LocalDate data;
+	private long usuarioId;
+	private long livroId;
+	private LocalDate dataIncial;
+	private LocalDate dataFinal;
+	private LocalDate dataDevolucao;
 	private String titulo;
 	private long exemplar;
 	private boolean status;
 
-	public Boolean getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 }

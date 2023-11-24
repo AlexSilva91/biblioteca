@@ -73,9 +73,6 @@ public class DevolucaoController {
 			listEmprestimoPorUsuario = emprestimoService.listAllFindByIdUser(123456);
 			for (Emprestimo e : listEmprestimoPorUsuario) {
 				Emprestimos emprestimos = new Emprestimos();
-				emprestimos.setUsuarioId(e.getUsuario().getCpf());
-				emprestimos.setLivroId(e.getLivro().getIsbn());
-				emprestimos.setDataIncial(e.getData());
 				emprestimos.setId(e.getId());
 				emprestimos.setExemplar(e.getExemplar());
 				emprestimos.setTitulo(e.getTitulo());

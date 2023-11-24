@@ -16,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import main.Principal;
 import main.usuario.CadastrarUsuario;
+import main.validations.EnderecoValidations;
 import main.validations.UsuarioValidation;
 import model.entities.Endereco;
 import model.entities.Usuario;
@@ -24,6 +25,7 @@ public class CadastrarUsuarioController implements Initializable {
 	private Usuario usuario = new Usuario();
 	private Endereco endereco = new Endereco();
 	private UsuarioValidation validation = new UsuarioValidation();
+	private EnderecoValidations enderecoValidations = new  EnderecoValidations();
 	@FXML
 	private Button btnCadastrar;
 
@@ -65,17 +67,18 @@ public class CadastrarUsuarioController implements Initializable {
 				/**
 				 * Set usuário
 				 */
-				usuario.setCpf(Long.valueOf(txtCpf.getText()));
-				usuario.setContato(Long.parseLong(txtTelefone.getText()));
-				usuario.setNome(txtNome.getText().toLowerCase());
-				endereco.setBairro(txtBairro.getText().toLowerCase());
-				endereco.setCidade(txtCidade.getText().toLowerCase());
-				endereco.setComplemento(txtComplemento.getText().toLowerCase());
-				endereco.setRua(txtRua.getText().toLowerCase());
-				endereco.setNumero(txtNumero.getText().toLowerCase());
-				endereco.setIdUser(Long.valueOf(txtCpf.getText()));
-				usuario.setEndereco(endereco);
-				validation.saveUser(usuario, endereco);
+				this.usuario.setCpf(Long.valueOf(txtCpf.getText()));
+				this.usuario.setContato(Long.parseLong(txtTelefone.getText()));
+				this.usuario.setNome(txtNome.getText().toLowerCase());
+				this.endereco.setBairro(txtBairro.getText().toLowerCase());
+				this.endereco.setCidade(txtCidade.getText().toLowerCase());
+				this.endereco.setComplemento(txtComplemento.getText().toLowerCase());
+				this.endereco.setRua(txtRua.getText().toLowerCase());
+				this.endereco.setNumero(txtNumero.getText().toLowerCase());
+				this.endereco.setIdUser(Long.valueOf(txtCpf.getText()));
+				
+				this.enderecoValidations.saveEndereco(this.endereco);
+				this.validation.saveUser(this.usuario);
 				this.setTexts();
 			} else {
 				Alerts.showAlert("Erro!", "Necessário preencher todos os campos!", null, AlertType.ERROR);
@@ -120,6 +123,7 @@ public class CadastrarUsuarioController implements Initializable {
 		Constraints.setTextFieldInterger(txtCpf);
 		Constraints.setTextFieldMaxLength(txtTelefone, 10);
 		Constraints.setTextFieldInterger(txtTelefone);
+		
 
 	}
 

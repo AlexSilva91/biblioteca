@@ -9,8 +9,7 @@ public class UpdateEndereco {
 		EnderecoService enderecoService = new EnderecoService();
 		
 		try {
-			Endereco endereco = enderecoService.findById(1);
-			endereco.setCidade("Bodocó");
+			Endereco endereco = enderecoService.findById(2);
 			endereco.setIdUser(13166456490L);
 			endereco = enderecoService.updateEndereco(endereco);
 			System.out.println("\n" + endereco.getCidade().toUpperCase() + "\n");
