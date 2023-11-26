@@ -1,4 +1,4 @@
-package main.validations;
+package main.controller;
 
 import java.util.regex.Pattern;
 
@@ -13,11 +13,11 @@ import model.entities.Usuario;
 import model.services.EnderecoService;
 import model.services.UsuarioService;
 
-public class UsuarioValidation {
+public class UsuarioController {
 	private UsuarioService service = new UsuarioService();
 	private Usuario usuario = new Usuario();
 	private Endereco endereco = new Endereco();
-	private EnderecoValidations enderecoValidation = new EnderecoValidations();
+	private EnderecoController enderecoValidation = new EnderecoController();
 
 	public Boolean usuarioExiste(long id) {
 		boolean existe = false;

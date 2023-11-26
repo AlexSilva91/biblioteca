@@ -1,9 +1,9 @@
-package main.validations;
+package main.controller;
 
 import model.entities.Endereco;
 import model.services.EnderecoService;
 
-public class EnderecoValidations {
+public class EnderecoController {
 	private EnderecoService service = new EnderecoService();
 	private Endereco endereco = new Endereco();
 

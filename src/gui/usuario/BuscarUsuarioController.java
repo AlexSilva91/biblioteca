@@ -7,8 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import main.validations.EnderecoValidations;
-import main.validations.UsuarioValidation;
+import main.controller.EnderecoController;
+import main.controller.UsuarioController;
 import model.entities.Endereco;
 import model.entities.Usuario;
 
@@ -57,8 +57,8 @@ public class BuscarUsuarioController {
 		 * CheckAtivo.setSelected(true); CheckAtivo.setDisable(true);
 		 * CheckInativo.setDisable(true);
 		 */
-		UsuarioValidation usuarioValidation = new UsuarioValidation();
-		EnderecoValidations enderecoValidation = new EnderecoValidations();
+		UsuarioController usuarioValidation = new UsuarioController();
+		EnderecoController enderecoValidation = new EnderecoController();
 		clearTexts();
 		try {
 			this.usuario = usuarioValidation.buscaUsuario(txtId.getText());

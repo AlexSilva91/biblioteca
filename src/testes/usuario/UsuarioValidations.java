@@ -1,6 +1,6 @@
 package testes.usuario;
 
-import main.validations.UsuarioValidation;
+import main.controller.UsuarioController;
 
 public class UsuarioValidations {
 
@@ -12,7 +12,7 @@ public class UsuarioValidations {
 	public static void usuarioExiste() {
 		boolean existe;
 		try {
-			UsuarioValidation validation = new UsuarioValidation();
+			UsuarioController validation = new UsuarioController();
 			existe = validation.usuarioExiste(123456);
 			System.out.println(existe);
 		} catch (Exception e) {

@@ -15,16 +15,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import main.Principal;
+import main.controller.EnderecoController;
+import main.controller.UsuarioController;
 import main.usuario.CadastrarUsuario;
-import main.validations.EnderecoValidations;
-import main.validations.UsuarioValidation;
 import model.entities.Endereco;
 import model.entities.Usuario;
 
 public class CadastrarUsuarioController implements Initializable {
 	private Usuario usuario = new Usuario();
 	private Endereco endereco = new Endereco();
-	private UsuarioValidation validation = new UsuarioValidation();
+	private UsuarioController validation = new UsuarioController();
 
 	@FXML
 	private Button btnCadastrar;

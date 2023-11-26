@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import main.Login;
 import main.Principal;
 import main.RedefinirSenha;
-import main.validations.UsuarioValidation;
+import main.controller.UsuarioController;
 
 public class LoginController implements Initializable {
 	@FXML
@@ -28,7 +28,7 @@ public class LoginController implements Initializable {
 	private TextField txtSenha;
 	@FXML
 	private Hyperlink redefinir;
-	private UsuarioValidation usuarioValidation = new UsuarioValidation();
+	private UsuarioController usuarioValidation = new UsuarioController();
 
 	@FXML
 	public void onBtnSairChangeAction() {

@@ -1,6 +1,6 @@
 package testes.usuario;
 
-import main.validations.UsuarioValidation;
+import main.controller.UsuarioController;
 import model.entities.Endereco;
 import model.entities.Usuario;
 import model.services.EnderecoService;
@@ -9,7 +9,7 @@ import model.services.UsuarioService;
 public class UpdateUser2 {
 
 	public static void main(String[] args) {
-		UsuarioValidation usuarioService = new UsuarioValidation();
+		UsuarioController usuarioService = new UsuarioController();
 		Usuario user = new Usuario();
 		EnderecoService service = new EnderecoService();
 		Endereco endereco = new Endereco();

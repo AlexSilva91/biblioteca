@@ -12,8 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import main.validations.EnderecoValidations;
-import main.validations.UsuarioValidation;
+import main.controller.EnderecoController;
+import main.controller.UsuarioController;
 import model.entities.Endereco;
 import model.entities.Usuario;
 import model.services.EnderecoService;
@@ -22,8 +22,8 @@ import model.services.UsuarioService;
 public class AtualizarUsuarioController implements Initializable {
 	private Usuario usuario = new Usuario();
 	private Endereco endereco = new Endereco();
-	private UsuarioValidation usuarioValidation = new UsuarioValidation();
-	private EnderecoValidations enderecoValidations = new EnderecoValidations();
+	private UsuarioController usuarioValidation = new UsuarioController();
+	private EnderecoController enderecoValidations = new EnderecoController();
 
 	@FXML
 	private CheckBox CheckAtivo;
