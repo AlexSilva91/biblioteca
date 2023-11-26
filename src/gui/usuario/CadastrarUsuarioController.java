@@ -25,7 +25,7 @@ public class CadastrarUsuarioController implements Initializable {
 	private Usuario usuario = new Usuario();
 	private Endereco endereco = new Endereco();
 	private UsuarioValidation validation = new UsuarioValidation();
-	private EnderecoValidations enderecoValidations = new  EnderecoValidations();
+
 	@FXML
 	private Button btnCadastrar;
 
@@ -76,9 +76,8 @@ public class CadastrarUsuarioController implements Initializable {
 				this.endereco.setRua(txtRua.getText().toLowerCase());
 				this.endereco.setNumero(txtNumero.getText().toLowerCase());
 				this.endereco.setIdUser(Long.valueOf(txtCpf.getText()));
-				
-				this.enderecoValidations.saveEndereco(this.endereco);
-				this.validation.saveUser(this.usuario);
+
+				this.validation.saveUser(this.usuario, this.endereco);
 				this.setTexts();
 			} else {
 				Alerts.showAlert("Erro!", "Necessário preencher todos os campos!", null, AlertType.ERROR);
@@ -123,7 +122,6 @@ public class CadastrarUsuarioController implements Initializable {
 		Constraints.setTextFieldInterger(txtCpf);
 		Constraints.setTextFieldMaxLength(txtTelefone, 10);
 		Constraints.setTextFieldInterger(txtTelefone);
-		
 
 	}
 

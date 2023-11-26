@@ -65,6 +65,8 @@ public class BuscarUsuarioController {
 			if (this.usuario != null) {
 				this.endereco = enderecoValidation.getEnderecoFindByIdUser(usuario.getCpf());
 				setTexts(this.usuario, this.endereco);
+			}else {
+				Alerts.showAlert("ERRO!", "Usuário não encontrado!", null, AlertType.ERROR);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

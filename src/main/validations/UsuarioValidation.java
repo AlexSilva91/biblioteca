@@ -36,7 +36,7 @@ public class UsuarioValidation {
 		return existe;
 	}
 
-	public Usuario saveUser(Usuario usuarioArg) {
+	public Usuario saveUser(Usuario usuarioArg, Endereco enderecoArg) {
 		try {
 			if (usuarioExiste(usuarioArg.getCpf())) {
 				Alerts.showAlert("Erro!", "Usuário existente!", null, AlertType.ERROR);
@@ -47,6 +47,7 @@ public class UsuarioValidation {
 				 * usuário
 				 */
 				service.saveUsuario(usuarioArg);
+				enderecoValidation.saveEndereco(enderecoArg);
 				Alerts.showAlert("Salvo!", "Salvo com sucesso!", null, AlertType.INFORMATION);
 			}
 		} catch (Exception e) {
