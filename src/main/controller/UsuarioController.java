@@ -1,16 +1,11 @@
 package main.controller;
 
-import java.util.regex.Pattern;
-
 import javax.persistence.NoResultException;
-
-import org.jboss.jandex.ThrowsTypeTarget;
 
 import gui.util.Alerts;
 import javafx.scene.control.Alert.AlertType;
 import model.entities.Endereco;
 import model.entities.Usuario;
-import model.services.EnderecoService;
 import model.services.UsuarioService;
 
 public class UsuarioController {
@@ -63,7 +58,6 @@ public class UsuarioController {
 		 */
 		// if (this.isValidInputLetter(arg) || this.isValidInputNum(arg)) {
 		try {
-			System.out.println("busca usuário\n" + this.isValidInputLetter(arg) + this.isValidInputNum(arg));
 			if (this.validNumber(arg)) {
 				this.usuario = service.findById(Long.parseLong(arg));
 			}
@@ -122,16 +116,6 @@ public class UsuarioController {
 			}
 		}
 		return false;
-	}
-
-	private boolean isValidInputLetter(String text) {
-		// Verifica se a entrada contém apenas letras
-		return Pattern.matches("[a-zA-Z]*", text);
-	}
-
-	private boolean isValidInputNum(String text) {
-		// Verifica se a entrada contém apenas números
-		return Pattern.matches("\\d*", text);
 	}
 
 	/**

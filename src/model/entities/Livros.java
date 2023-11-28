@@ -23,4 +23,8 @@ public class Livros {
 	private Integer ano;
 	private long exemplar;
 	private boolean status;
+
+	public boolean getStatus() {
+		return this.status;
+	}
 }

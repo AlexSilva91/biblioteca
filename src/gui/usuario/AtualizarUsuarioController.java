@@ -74,11 +74,9 @@ public class AtualizarUsuarioController implements Initializable {
 		this.usuario.setNome(this.txtNome.getText().toLowerCase());
 		if (this.CheckAtivo.selectedProperty().getValue()) {
 			this.usuario.setStatus(true);
-			System.out.println("\nCheckAtivo -> " + this.CheckAtivo.selectedProperty().getValue());
 		}
 		if (this.CheckInativo.selectedProperty().getValue()) {
 			this.usuario.setStatus(false);
-			System.out.println("\nCheckInativo -> " + this.CheckInativo.selectedProperty().getValue());
 		}
 		/**
 		 * set endereço
@@ -91,9 +89,6 @@ public class AtualizarUsuarioController implements Initializable {
 		/**
 		 * Salva usuário e endereço (caso não seja nulo) E limpa os campos preenchidos
 		 */
-
-		System.out.println(this.endereco.getIdUser() + "\n" + this.endereco.getIdUser());
-
 		if (this.usuarioValidation.atualizarUsuario(this.usuario, this.endereco)) {
 			Alerts.showAlert("Atualizado!", "Dados atualizados!", null, AlertType.INFORMATION);
 		} else {

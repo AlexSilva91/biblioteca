@@ -53,10 +53,7 @@ public class BuscarUsuarioController {
 
 	@FXML
 	void onBtnBuscarAction(ActionEvent event) {
-		/*
-		 * CheckAtivo.setSelected(true); CheckAtivo.setDisable(true);
-		 * CheckInativo.setDisable(true);
-		 */
+
 		UsuarioController usuarioValidation = new UsuarioController();
 		EnderecoController enderecoValidation = new EnderecoController();
 		clearTexts();
@@ -65,7 +62,7 @@ public class BuscarUsuarioController {
 			if (this.usuario != null) {
 				this.endereco = enderecoValidation.getEnderecoFindByIdUser(usuario.getCpf());
 				setTexts(this.usuario, this.endereco);
-			}else {
+			} else {
 				Alerts.showAlert("ERRO!", "Usuário não encontrado!", null, AlertType.ERROR);
 			}
 		} catch (Exception e) {

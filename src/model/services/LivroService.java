@@ -48,8 +48,16 @@ public class LivroService {
 	public List<Livros> listAllFindByYear(long year) {
 		String jpql = "SELECT l FROM Livros as l where l.ano =: year";
 		Query query = em.createQuery(jpql, Livros.class).setParameter("year", year);
-		List<Livros> listAllFindByYear= query.getResultList();
+		List<Livros> listAllFindByYear = query.getResultList();
 		return listAllFindByYear;
+	}
+
+	public List<Livros> listAll() {
+		String jpql = "FROM Livros l";
+		Query query = em.createQuery(jpql, Livros.class);
+		@SuppressWarnings("unchecked")
+		List<Livros> listAll = query.getResultList();
+		return listAll;
 	}
 
 	public Livros updateLivro(Livros livro) {

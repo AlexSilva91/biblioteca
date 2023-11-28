@@ -12,6 +12,7 @@ public class LivroController {
 
 	private LivroService livroService = new LivroService();
 	private Livros livro = new Livros();
+	private List<Livros> listAllLivros = new ArrayList<Livros>();
 
 	public boolean savarLivro(Livros livro) {
 		boolean salvo = false;
@@ -42,7 +43,6 @@ public class LivroController {
 		try {
 			listBooks = livroService.listAllFindByTitle(title);
 		} catch (Exception e) {
-			// Alerts.showAlert("ERRO!", "Livros não encontrados!", null, AlertType.ERROR);
 			e.printStackTrace();
 		}
 		return listBooks;
@@ -55,6 +55,38 @@ public class LivroController {
 			e.printStackTrace();
 		}
 		return this.livro;
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<Livros> seacherLivros(String arg) {
+		List<Livros> listLivros = new ArrayList();
+		try {
+			if (this.validNumber(arg)) {
+				listLivros.add(this.livroService.findById(Long.valueOf(arg)));
+			}
+			if (this.validLetras(arg)) {
+				this.listAllLivros = this.listAll();
+				if (this.listAllLivros != null) {
+					for (Livros livro : this.listAllLivros) {
+						if (arg.equals(livro.getAutor()) || arg.equals(livro.getTitulo())) {
+							listLivros.add(livro);
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listLivros;
+	}
+
+	public List<Livros> listAll() {
+		try {
+			this.listAllLivros = this.livroService.listAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return this.listAllLivros;
 	}
 
 	public boolean updateBook(Livros livro) {
@@ -77,5 +109,23 @@ public class LivroController {
 			numberList.add(i);
 		}
 		return numberList;
+	}
+
+	public boolean validNumber(String arg) {
+		for (char caracteres : arg.toCharArray()) {
+			if (Character.isDigit(caracteres)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean validLetras(String arg) {
+		for (char caracteres : arg.toCharArray()) {
+			if (Character.isLetter(caracteres)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
