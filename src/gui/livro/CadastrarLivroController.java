@@ -57,8 +57,10 @@ public class CadastrarLivroController implements Initializable {
 			this.livro.setTitulo(txtTitulo.getText());
 			this.livro.setAutor(txtAutor.getText());
 			this.livro.setAno(boxAno.getValue());
-			if(this.livroController.saveLivro(this.livro)) {
+			if (this.livroController.savarLivro(this.livro)) {
 				Alerts.showAlert("Salvo!", "Livro cadastrado!", null, AlertType.INFORMATION);
+			}else {
+				Alerts.showAlert("Erro!", "ISBN já cadastrado!", null, AlertType.ERROR);
 			}
 		} else {
 			Alerts.showAlert("Erro!", "Necessário preencher todos os campos!", null, AlertType.ERROR);

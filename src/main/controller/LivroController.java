@@ -11,27 +11,13 @@ import model.services.LivroService;
 public class LivroController {
 
 	private LivroService livroService = new LivroService();
+	private Livros livro = new Livros();
 
-	public boolean saveLivro(Livros livro) {
+	public boolean savarLivro(Livros livro) {
 		boolean salvo = false;
-		List<Livros> listBooks = new ArrayList<Livros>();
 		try {
-			listBooks = this.searchFindTitle(livro.getTitulo());
-			if (listBooks != null) {
-				for (Livros book : listBooks) {
-					if (book.getTitulo().equals(livro.getTitulo()) && book.getAno() == livro.getAno()) {
-						Long exemplar = book.getExemplar();
-						book = livro;
-						book.setStatus(true);
-						book.setExemplar(exemplar + 1);
-						if (this.updateBook(book)) {
-							salvo = true;
-						}
-					} else {
-						salvo = this.salveLivro(livro);
-					}
-				}
-			} else {
+			this.livro = this.getLivroFindById(livro.getIsbn());
+			if (this.livro == null) {
 				salvo = this.salveLivro(livro);
 			}
 		} catch (Exception e) {
@@ -56,10 +42,19 @@ public class LivroController {
 		try {
 			listBooks = livroService.listAllFindByTitle(title);
 		} catch (Exception e) {
-			Alerts.showAlert("ERRO!", "Livros não encontrados!", null, AlertType.ERROR);
+			// Alerts.showAlert("ERRO!", "Livros não encontrados!", null, AlertType.ERROR);
 			e.printStackTrace();
 		}
 		return listBooks;
+	}
+
+	public Livros getLivroFindById(Long id) {
+		try {
+			this.livro = livroService.findById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return this.livro;
 	}
 
 	public boolean updateBook(Livros livro) {
