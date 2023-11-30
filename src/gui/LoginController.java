@@ -37,13 +37,11 @@ public class LoginController implements Initializable {
 
 	@FXML
 	public void onBtnEntrarChangeAction() {
-//		if (usuarioValidation.validLogin(txtCpf.getText(), txtSenha.getText())) {
-//			this.entrar();
-//		} else {
-//			Alerts.showAlert("ERRO!", "Login inválido!", null, AlertType.ERROR);
-//		}
-		
-		this.entrar();
+		if (usuarioValidation.validLogin(txtCpf.getText(), txtSenha.getText())) {
+			this.entrar();
+		} else {
+			Alerts.showAlert("ERRO!", "Login inválido!", null, AlertType.ERROR);
+		}
 	}
 
 	@FXML
@@ -58,7 +56,7 @@ public class LoginController implements Initializable {
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//mascaraCPF(txtCpf);
+		// mascaraCPF(txtCpf);
 
 	}
 

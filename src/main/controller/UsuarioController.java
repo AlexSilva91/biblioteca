@@ -121,12 +121,10 @@ public class UsuarioController {
 	/**
 	 * Valida o dados inseridos pelo usuário e retorna verdadeira caso sejam válidos
 	 */
-	public boolean validLogin(String cpf, String senha) {
+	public boolean validLogin(String login, String senha) {
 		boolean log = false;
-		if (usuarioExiste(Long.parseLong(cpf))) {
-			if (usuario.getCpf() == Long.parseLong(cpf) && senha.equalsIgnoreCase("admin")) {
-				log = true;
-			}
+		if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+			log = true;
 		}
 		return log;
 	}

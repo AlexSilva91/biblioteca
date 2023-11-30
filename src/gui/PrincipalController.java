@@ -20,7 +20,7 @@ import main.usuario.AtualizarUsuario;
 import main.usuario.BuscarUsuario;
 import main.usuario.CadastrarUsuario;
 
-public class PrincipalController implements Initializable {
+public class PrincipalController {
 
 	@FXML
 	private MenuItem menuAjudaSair;
@@ -66,7 +66,6 @@ public class PrincipalController implements Initializable {
 	@FXML
 	void onMenuAjudaSobreAction(ActionEvent event) {
 		Sobre sobre = new Sobre();
-		close();
 		try {
 			sobre.start(new Stage());
 		} catch (Exception e) {
@@ -127,7 +126,6 @@ public class PrincipalController implements Initializable {
 	@FXML
 	void onMenuCadastraUsuarioAction(ActionEvent event) {
 		CadastrarUsuario cadastrarUsuario = new CadastrarUsuario();
-		close();
 		try {
 			cadastrarUsuario.start(new Stage());
 		} catch (Exception e) {
@@ -163,12 +161,6 @@ public class PrincipalController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void close() {
