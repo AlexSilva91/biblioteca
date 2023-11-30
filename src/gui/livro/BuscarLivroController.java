@@ -17,7 +17,7 @@ import main.controller.LivroController;
 import main.livro.BuscarLivro;
 import model.entities.Livros;
 
-public class BuscarLivroController implements Initializable {
+public class BuscarLivroController {
 	private Livros livro = new Livros();
 	private LivroController livroController = new LivroController();
 
@@ -55,15 +55,15 @@ public class BuscarLivroController implements Initializable {
 	void onBtnBuscarAction(ActionEvent event) {
 		List<Livros> listLivro = new ArrayList<Livros>();
 		try {
-			listLivro = this.livroController.seacherLivros(txtBusca.getText());
+			listLivro = this.livroController.seacherLivros(txtBusca.getText().toLowerCase());
 			if (!listLivro.isEmpty()) {
 				for (Livros livro : listLivro) {
 					if (livro != null) {
 						this.txtAno.setText(String.valueOf(livro.getAno()));
-						this.txtAutor.setText(livro.getAutor());
+						this.txtAutor.setText(livro.getAutor().toLowerCase());
 						this.txtExexmplar.setText(String.valueOf(livro.getExemplar()));
 						this.txtISBN.setText(String.valueOf(livro.getIsbn()));
-						this.txtTitle.setText(livro.getTitulo());
+						this.txtTitle.setText(livro.getTitulo().toLowerCase());
 						if (livro.getStatus()) {
 							this.checkDisponivel.setSelected(true);
 							this.checkDisponivel.setDisable(true);
@@ -87,11 +87,6 @@ public class BuscarLivroController implements Initializable {
 	@FXML
 	void onBtnVoltarAction(ActionEvent event) {
 		BuscarLivro.getStage().close();
-	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-
 	}
 
 }

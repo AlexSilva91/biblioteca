@@ -54,8 +54,8 @@ public class CadastrarLivroController implements Initializable {
 	void onBtnCadastrarAction(ActionEvent event) {
 		if (this.validaCampos()) {
 			this.livro.setIsbn(Long.valueOf(txtIsbn.getText()));
-			this.livro.setTitulo(txtTitulo.getText());
-			this.livro.setAutor(txtAutor.getText());
+			this.livro.setTitulo(txtTitulo.getText().toLowerCase());
+			this.livro.setAutor(txtAutor.getText().toLowerCase());
 			this.livro.setAno(boxAno.getValue());
 			if (this.livroController.savarLivro(this.livro)) {
 				Alerts.showAlert("Salvo!", "Livro cadastrado!", null, AlertType.INFORMATION);
