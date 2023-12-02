@@ -18,7 +18,6 @@ public class EmprestimoService {
 			this.em.getTransaction().commit();
 		} catch (Exception e) {
 			this.em.getTransaction().rollback();
-			System.out.println(e.getMessage());
 		}
 		return emprestimo;
 	}

@@ -14,6 +14,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Emprestimos {
+
 	private long id;
 	private long usuarioId;
 	private long livroId;
@@ -23,5 +24,4 @@ public class Emprestimos {
 	private String titulo;
 	private long exemplar;
 	private String status;
-
 }

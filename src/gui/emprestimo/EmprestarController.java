@@ -2,7 +2,6 @@ package gui.emprestimo;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,16 +16,22 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import main.controller.EmprestimoControllerMain;
 import main.controller.LivroController;
 import main.controller.UsuarioController;
+import model.entities.Emprestimo;
 import model.entities.Livros;
 import model.entities.Usuario;
 
 public class EmprestarController implements Initializable {
 	private List<String> listStringLivros = new ArrayList<String>();
 	private Usuario usuario = new Usuario();
+	private Livros livro = new Livros();
 	private UsuarioController usuarioController = new UsuarioController();
 	private LivroController livroController = new LivroController();
+	private static List<Livros> listLivro = new ArrayList<Livros>();
+	private Emprestimo emprestimo = new Emprestimo();
+	private EmprestimoControllerMain emprestimoControllerMain = new EmprestimoControllerMain();
 
 	@FXML
 	private Button btnBusca;
@@ -48,7 +53,41 @@ public class EmprestarController implements Initializable {
 
 	@FXML
 	void onBtnEmprestarAction(ActionEvent event) {
+		try {
+			if (usuarioValido() && livroSelecionado()) {
+				String livroBox = this.cBoxLivros.getValue();
+				String[] boxDadosLivro = livroBox.split("-");
+				this.livro = this.getLivro(boxDadosLivro[0].strip(), Integer.valueOf(boxDadosLivro[1].strip()));
 
+				this.emprestimo.setDataIncial(LocalDate.now());
+				this.emprestimo.setDataDevolucao(EmprestimoControllerMain
+						.convertStringEmLocalDate(EmprestimoControllerMain.validDataDevolucao(LocalDate.now())));
+				this.emprestimo.setExemplar(this.livro.getExemplar());
+				if (this.livro.getExemplar() > 0) {
+					this.livro.setExemplar(this.livro.getExemplar() - 1);
+				}
+				if (this.livro.getExemplar() == 0) {
+					this.livro.setStatus(false);
+				}
+
+				this.emprestimo.setLivroId(this.livro.getIsbn());
+				this.emprestimo.setTitulo(this.livro.getTitulo());
+				if (this.usuario.getStatus()) {
+					this.emprestimo.setUsuarioId(this.usuario.getCpf());
+					this.emprestimo.setStatus(true);
+
+					this.emprestimoControllerMain.emprestarLivro(this.emprestimo);
+					this.livroController.updateBook(this.livro);
+				} else {
+					Alerts.showAlert("Erro!", "Necessário selecionar um usuário ativo!", null, AlertType.ERROR);
+				}
+			} else {
+				Alerts.showAlert("Erro!", "Necessário selecionar o livro e buscar o usuário!", null, AlertType.ERROR);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.atualizarLivros();
 	}
 
 	@FXML
@@ -71,47 +110,50 @@ public class EmprestarController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		this.txtDevolucao.setText(this.validDataDevolucao(LocalDate.now()));
-		this.txtEmprestimo.setText(this.ValidData(LocalDate.now()));
-		List<Livros> listLivro = new ArrayList<Livros>();
+		this.txtDevolucao.setText(EmprestimoControllerMain.validDataDevolucao(LocalDate.now()));
+		this.txtEmprestimo.setText(EmprestimoControllerMain.ValidData(LocalDate.now()));
+		this.atualizarLivros();
+	}
+
+	@SuppressWarnings("static-access")
+	public void atualizarLivros() {
 		try {
-			listLivro = this.livroController.listAll();
-			for (Livros libre : listLivro) {
-				this.listStringLivros.add(libre.getTitulo() + " " + libre.getAno());
+			this.listLivro = this.livroController.listAll();
+			for (Livros libre : this.listLivro) {
+				if (libre.getStatus()) {
+					this.listStringLivros.add(libre.getTitulo() + " - " + libre.getAno());
+				}
 			}
 			ObservableList<String> itens = FXCollections.observableList(this.listStringLivros);
 			cBoxLivros.setItems(itens);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	public String validDataDevolucao(LocalDate date) {
-		int dia = date.getDayOfMonth();
-		int mes = date.getMonthValue();
-		int ano = date.getYear();
-		int totalDiasDoMes = date.lengthOfMonth();
-		int totalDiasDoAno = date.lengthOfYear();
-		int diaDoAno = date.getDayOfYear();
-		System.out.println(dia + "-" + mes + "-" + ano);
-		if (dia - totalDiasDoMes == 0) {
-			date = date.plusDays(7);
-			System.out.println("Mês: " + date.getMonthValue() + "\nDia: " + date.getDayOfMonth());
-			if (diaDoAno - totalDiasDoAno == 0) {
-				date = date.plusYears(1);
-				System.out.println("Mês: " + date.getMonthValue() + "\nDia: " + date.getDayOfMonth());
+	@SuppressWarnings("static-access")
+	public Livros getLivro(String titulo, int ano) {
+		for (Livros libre : this.listLivro) {
+			if (libre.getTitulo().equalsIgnoreCase(titulo) && libre.getAno() == ano) {
+				this.livro = libre;
 			}
 		}
-		String formattedDate = this.ValidData(date);
-		System.out.println(formattedDate);
-		return formattedDate;
+		return this.livro;
 	}
 
-	public String ValidData(LocalDate date) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String formattedDate = date.format(formatter);
-		System.out.println(formattedDate);
-		return formattedDate;
+	public boolean usuarioValido() {
+		boolean usuarioValido = false;
+		if (this.usuario != null) {
+			usuarioValido = true;
+		}
+		return usuarioValido;
+	}
+
+	public boolean livroSelecionado() {
+		boolean livroSelecionado = false;
+		if (cBoxLivros.getValue() != null) {
+			livroSelecionado = true;
+		}
+		return livroSelecionado;
 	}
 }
