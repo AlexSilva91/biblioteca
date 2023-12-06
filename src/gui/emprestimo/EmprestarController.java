@@ -60,8 +60,8 @@ public class EmprestarController implements Initializable {
 				this.livro = this.getLivro(boxDadosLivro[0].strip(), Integer.valueOf(boxDadosLivro[1].strip()));
 
 				if (this.livro.getStatus()) {
-					this.emprestimo.setDataIncial(LocalDate.now());
-					this.emprestimo.setDataDevolucao(EmprestimoControllerMain
+					this.emprestimo.setDt_Incial(LocalDate.now());
+					this.emprestimo.setDt_Devolucao(EmprestimoControllerMain
 							.convertStringEmLocalDate(EmprestimoControllerMain.validDataDevolucao(LocalDate.now())));
 					this.emprestimo.setExemplar(this.livro.getExemplar());
 					if (this.livro.getExemplar() > 0) {

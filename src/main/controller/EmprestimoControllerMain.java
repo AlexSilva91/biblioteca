@@ -2,6 +2,8 @@ package main.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,6 +29,16 @@ public class EmprestimoControllerMain {
 		}
 	}
 
+	public List<Emprestimo> listAllFindByIdUser(Long id) {
+		List<Emprestimo> list = new ArrayList<Emprestimo>();
+		try {
+			list = this.emprestimoService.listAllFindByIdUser(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 	public static String validDataDevolucao(LocalDate date) {
 		int dia = date.getDayOfMonth();
 		int totalDiasDoMes = date.lengthOfMonth();
@@ -46,6 +58,12 @@ public class EmprestimoControllerMain {
 
 	public static String ValidData(LocalDate date) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String formattedDate = date.format(formatter);
+		return formattedDate;
+	}
+
+	public static String ValidData2(LocalDate date) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		String formattedDate = date.format(formatter);
 		return formattedDate;
 	}

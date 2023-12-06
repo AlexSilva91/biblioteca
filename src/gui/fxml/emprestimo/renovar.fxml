@@ -34,7 +34,7 @@
                   <Font name="Noto Sans Mono Bold" size="14.0" />
                </font>
             </Label>
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="249.0" promptText="Usuário" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+            <TextField fx:id="txtBusca" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="249.0" promptText="CPF" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
                <GridPane.margin>
                   <Insets top="50.0" />
                </GridPane.margin>
@@ -64,11 +64,10 @@
          <content>
             <TableView fx:id="tblEmprestimo" prefHeight="282.0" prefWidth="650.0">
               <columns>
-                  <TableColumn fx:id="columUsuarioId" maxWidth="1.7976931348623157E308" minWidth="20.0" prefWidth="78.0" text="usuarioID" />
                   <TableColumn fx:id="columLivroId" prefWidth="77.0" text="livroID" />
-                  <TableColumn fx:id="columDatInit" prefWidth="77.0" text="inicio" />
+                  <TableColumn fx:id="columDatInit" prefWidth="77.0" text="dt_inicio" />
                   <TableColumn fx:id="columTitulo" prefWidth="77.0" text="título" />
-                  <TableColumn fx:id="columDatFinal" prefWidth="77.0" text="fim" />
+                  <TableColumn fx:id="columDatFinal" prefWidth="77.0" text="dt_final" />
                   <TableColumn fx:id="columExemplar" prefWidth="77.0" text="exemplar" />
                 <TableColumn fx:id="columDevolvido" editable="false" prefWidth="72.0" text="devolvido" />
                   <TableColumn fx:id="columStatus" prefWidth="77.0" text="status" />
