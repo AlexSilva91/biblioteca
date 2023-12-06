@@ -59,35 +59,39 @@ public class EmprestarController implements Initializable {
 				String[] boxDadosLivro = livroBox.split("-");
 				this.livro = this.getLivro(boxDadosLivro[0].strip(), Integer.valueOf(boxDadosLivro[1].strip()));
 
-				this.emprestimo.setDataIncial(LocalDate.now());
-				this.emprestimo.setDataDevolucao(EmprestimoControllerMain
-						.convertStringEmLocalDate(EmprestimoControllerMain.validDataDevolucao(LocalDate.now())));
-				this.emprestimo.setExemplar(this.livro.getExemplar());
-				if (this.livro.getExemplar() > 0) {
-					this.livro.setExemplar(this.livro.getExemplar() - 1);
-				}
-				if (this.livro.getExemplar() == 0) {
-					this.livro.setStatus(false);
-				}
+				if (this.livro.getStatus()) {
+					this.emprestimo.setDataIncial(LocalDate.now());
+					this.emprestimo.setDataDevolucao(EmprestimoControllerMain
+							.convertStringEmLocalDate(EmprestimoControllerMain.validDataDevolucao(LocalDate.now())));
+					this.emprestimo.setExemplar(this.livro.getExemplar());
+					if (this.livro.getExemplar() > 0) {
+						this.livro.setExemplar(this.livro.getExemplar() - 1);
+					}
+					if (this.livro.getExemplar() == 0) {
+						this.livro.setStatus(false);
+					}
 
-				this.emprestimo.setLivroId(this.livro.getIsbn());
-				this.emprestimo.setTitulo(this.livro.getTitulo());
-				if (this.usuario.getStatus()) {
-					this.emprestimo.setUsuarioId(this.usuario.getCpf());
-					this.emprestimo.setStatus(true);
+					this.emprestimo.setLivroId(this.livro.getIsbn());
+					this.emprestimo.setTitulo(this.livro.getTitulo());
+					if (this.usuario.getStatus()) {
+						this.emprestimo.setUsuarioId(this.usuario.getCpf());
+						this.emprestimo.setStatus(true);
 
-					this.emprestimoControllerMain.emprestarLivro(this.emprestimo);
-					this.livroController.updateBook(this.livro);
+						this.emprestimoControllerMain.emprestarLivro(this.emprestimo);
+						this.livroController.updateBook(this.livro);
+					} else {
+						Alerts.showAlert("Erro!", "Necessário selecionar um usuário ativo!", null, AlertType.ERROR);
+					}
 				} else {
-					Alerts.showAlert("Erro!", "Necessário selecionar um usuário ativo!", null, AlertType.ERROR);
+					Alerts.showAlert("Erro!", "Livro indisponível!", null, AlertType.ERROR);
 				}
 			} else {
 				Alerts.showAlert("Erro!", "Necessário selecionar o livro e buscar o usuário!", null, AlertType.ERROR);
 			}
+			this.atualizarLivros();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.atualizarLivros();
 	}
 
 	@FXML
@@ -113,10 +117,12 @@ public class EmprestarController implements Initializable {
 		this.txtDevolucao.setText(EmprestimoControllerMain.validDataDevolucao(LocalDate.now()));
 		this.txtEmprestimo.setText(EmprestimoControllerMain.ValidData(LocalDate.now()));
 		this.atualizarLivros();
+
 	}
 
 	@SuppressWarnings("static-access")
 	public void atualizarLivros() {
+		this.cBoxLivros.getItems().clear();
 		try {
 			this.listLivro = this.livroController.listAll();
 			for (Livros libre : this.listLivro) {
@@ -125,7 +131,7 @@ public class EmprestarController implements Initializable {
 				}
 			}
 			ObservableList<String> itens = FXCollections.observableList(this.listStringLivros);
-			cBoxLivros.setItems(itens);
+			this.cBoxLivros.setItems(itens);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
