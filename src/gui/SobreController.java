@@ -27,13 +27,7 @@ public class SobreController {
 
 	@FXML
 	void onBtnVoltarAction(ActionEvent event) {
-		Principal principal = new Principal();
 		this.close();
-		try {
-			principal.start(new Stage());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	private void close() {

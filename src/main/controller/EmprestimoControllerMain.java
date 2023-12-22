@@ -39,6 +39,18 @@ public class EmprestimoControllerMain {
 		return list;
 	}
 
+	public Emprestimo findById(Long id) {
+		return this.emprestimoService.findById(id);
+	}
+
+	public void renovarEmprestimo(Emprestimo emprestimo) {
+		try {
+			this.emprestimoService.updateEmprestimo(emprestimo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static String validDataDevolucao(LocalDate date) {
 		int dia = date.getDayOfMonth();
 		int totalDiasDoMes = date.lengthOfMonth();
@@ -58,12 +70,6 @@ public class EmprestimoControllerMain {
 
 	public static String ValidData(LocalDate date) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String formattedDate = date.format(formatter);
-		return formattedDate;
-	}
-
-	public static String ValidData2(LocalDate date) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		String formattedDate = date.format(formatter);
 		return formattedDate;
 	}
