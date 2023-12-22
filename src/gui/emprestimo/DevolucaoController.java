@@ -13,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.entities.Emprestimo;
 import model.entities.Emprestimos;
-import model.entities.Usuario;
 import model.services.EmprestimoService;
 
 public class DevolucaoController {
@@ -70,7 +69,7 @@ public class DevolucaoController {
 		listEmprestimos.clear();
 		try {
 			setValueColumn();
-			listEmprestimoPorUsuario = emprestimoService.listAllFindByIdUser(123456);
+			listEmprestimoPorUsuario = emprestimoService.listAllFindByIdUser(13166456490L);
 			for (Emprestimo e : listEmprestimoPorUsuario) {
 				Emprestimos emprestimos = new Emprestimos();
 				emprestimos.setId(e.getId());
@@ -91,13 +90,12 @@ public class DevolucaoController {
 	}
 
 	public void setValueColumn() {
-		columUsuarioId.setCellValueFactory(new PropertyValueFactory<>("usuarioId"));
 		columLivroId.setCellValueFactory(new PropertyValueFactory<>("livroId"));
-		columDatInit.setCellValueFactory(new PropertyValueFactory<>("data"));
+		columDatInit.setCellValueFactory(new PropertyValueFactory<>("dt_Incial"));
 		columTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-		columDatFinal.setCellValueFactory(new PropertyValueFactory<>("data"));
+		columDatFinal.setCellValueFactory(new PropertyValueFactory<>("dt_Devolucao"));
 		columExemplar.setCellValueFactory(new PropertyValueFactory<>("exemplar"));
-		columDevolvido.setCellValueFactory(new PropertyValueFactory<>("data"));
+		columDevolvido.setCellValueFactory(new PropertyValueFactory<>("dt_Final"));
 		columStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 	}
 }
