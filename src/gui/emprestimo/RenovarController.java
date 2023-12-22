@@ -58,7 +58,7 @@ public class RenovarController implements Initializable {
 	void onBtnBuscarAction(ActionEvent event) {
 		limparListas();
 		try {
-			listEmprestimoPorUsuario = this.controllerMain.listAllFindByIdUser(Long.parseLong(this.txtBusca.getText()));
+			listEmprestimoPorUsuario = buscaEmprestimosPorUsuario();
 			if (!this.listEmprestimoPorUsuario.isEmpty()) {
 				carregarEmprestimo();
 			} else {
@@ -87,6 +87,7 @@ public class RenovarController implements Initializable {
 									+ EmprestimoControllerMain.validDataDevolucao(EmprestimoControllerMain
 											.convertStringEmLocalDate(this.emprestimos.getDt_Devolucao())),
 							null, AlertType.ERROR);
+					atualizarTabela();
 				}
 			} else {
 				Alerts.showAlert("Error!", "Reseva já inativa!", null, AlertType.ERROR);
@@ -94,6 +95,18 @@ public class RenovarController implements Initializable {
 		} else {
 			Alerts.showAlert("Error!", "Necessário selecionar reserva!", null, AlertType.ERROR);
 		}
+	}
+
+	public List<Emprestimo> buscaEmprestimosPorUsuario() {
+		this.listEmprestimoPorUsuario = this.controllerMain
+				.listAllFindByIdUser(Long.parseLong(this.txtBusca.getText()));
+		return this.listEmprestimoPorUsuario;
+	}
+
+	public void atualizarTabela() {
+		limparListas();
+		this.listEmprestimoPorUsuario = buscaEmprestimosPorUsuario();
+		carregarEmprestimo();
 	}
 
 	public void limparListas() {

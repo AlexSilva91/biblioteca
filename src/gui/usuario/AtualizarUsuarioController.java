@@ -8,16 +8,14 @@ import gui.util.Constraints;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import main.controller.EnderecoController;
 import main.controller.UsuarioController;
 import model.entities.Endereco;
 import model.entities.Usuario;
-import model.services.EnderecoService;
-import model.services.UsuarioService;
 
 public class AtualizarUsuarioController implements Initializable {
 	private Usuario usuario = new Usuario();

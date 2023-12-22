@@ -89,13 +89,7 @@ public class CadastrarUsuarioController implements Initializable {
 
 	@FXML
 	void onBtnVoltarAction(ActionEvent event) {
-		Principal principal = new Principal();
 		this.close();
-		try {
-			principal.start(new Stage());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@SuppressWarnings("unused")
