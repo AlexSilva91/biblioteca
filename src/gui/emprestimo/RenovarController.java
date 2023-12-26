@@ -1,7 +1,6 @@
 package gui.emprestimo;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -13,16 +12,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.controller.EmprestimoControllerMain;
 import model.entities.Emprestimo;
 import model.entities.Emprestimos;
-import model.services.EmprestimoService;
 
 public class RenovarController implements Initializable {
 
@@ -83,14 +81,14 @@ public class RenovarController implements Initializable {
 					Emprestimo emprestimo = new Emprestimo();
 					emprestimo = this.controllerMain.findById(this.emprestimos.getId());
 					if (emprestimo != null) {
-						emprestimo.setDt_Devolucao(EmprestimoControllerMain.convertStringEmLocalDate(
+						emprestimo.setDt_Final(EmprestimoControllerMain.convertStringEmLocalDate(
 								EmprestimoControllerMain.validDataDevolucao(EmprestimoControllerMain
-										.convertStringEmLocalDate(this.emprestimos.getDt_Devolucao()))));
+										.convertStringEmLocalDate(this.emprestimos.getDt_Final()))));
 						this.controllerMain.renovarEmprestimo(emprestimo);
 						Alerts.showAlert("Renovado!",
 								"Emprestimo renovado por mais 7 dias!\nNova data de devolução: "
 										+ EmprestimoControllerMain.validDataDevolucao(EmprestimoControllerMain
-												.convertStringEmLocalDate(this.emprestimos.getDt_Devolucao())),
+												.convertStringEmLocalDate(this.emprestimos.getDt_Final())),
 								null, AlertType.INFORMATION);
 						atualizarTabela();
 					}
@@ -181,9 +179,9 @@ public class RenovarController implements Initializable {
 		columLivroId.setCellValueFactory(new PropertyValueFactory<>("livroId"));
 		columDatInit.setCellValueFactory(new PropertyValueFactory<>("dt_Incial"));
 		columTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-		columDatFinal.setCellValueFactory(new PropertyValueFactory<>("dt_Devolucao"));
+		columDatFinal.setCellValueFactory(new PropertyValueFactory<>("dt_Final"));
 		columExemplar.setCellValueFactory(new PropertyValueFactory<>("exemplar"));
-		columDevolvido.setCellValueFactory(new PropertyValueFactory<>("dt_Final"));
+		columDevolvido.setCellValueFactory(new PropertyValueFactory<>("dt_Devolucao"));
 		columStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 	}
 

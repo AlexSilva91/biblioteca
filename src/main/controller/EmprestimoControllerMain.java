@@ -68,6 +68,10 @@ public class EmprestimoControllerMain {
 		return formattedDate;
 	}
 
+	public void atualizarEmprestimo() {
+
+	}
+
 	public static String ValidData(LocalDate date) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String formattedDate = date.format(formatter);

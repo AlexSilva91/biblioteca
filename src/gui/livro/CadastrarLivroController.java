@@ -3,7 +3,6 @@ package gui.livro;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -15,14 +14,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.print.Collation;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.util.Callback;
 import main.controller.LivroController;
 import main.livro.CadastrarLivro;
 import model.entities.Livros;
@@ -59,7 +54,7 @@ public class CadastrarLivroController implements Initializable {
 			this.livro.setAno(boxAno.getValue());
 			if (this.livroController.savarLivro(this.livro)) {
 				Alerts.showAlert("Salvo!", "Livro cadastrado!", null, AlertType.INFORMATION);
-			}else {
+			} else {
 				Alerts.showAlert("Erro!", "ISBN já cadastrado!", null, AlertType.ERROR);
 			}
 		} else {
@@ -109,9 +104,7 @@ public class CadastrarLivroController implements Initializable {
 		boolean preenchido = false;
 		int index = 0;
 		for (TextField textField : listLivros) {
-			if (!textField.getText().trim().isEmpty()) {
-				System.out.println("\n" + textField.getId());
-			} else {
+			if (textField.getText().trim().isEmpty()) {
 				index += 1;
 			}
 		}
@@ -119,10 +112,6 @@ public class CadastrarLivroController implements Initializable {
 			preenchido = true;
 		}
 		return preenchido;
-	}
-
-	protected void setDadosLivro() {
-
 	}
 
 }
