@@ -58,13 +58,17 @@ public class RenovarController implements Initializable {
 	void onBtnBuscarAction(ActionEvent event) {
 		limparListas();
 		try {
-			listEmprestimoPorUsuario = buscaEmprestimosPorUsuario();
-			if (!this.listEmprestimoPorUsuario.isEmpty()) {
-				carregarEmprestimo();
+			if (validBuscaPreenchida()) {
+				listEmprestimoPorUsuario = buscaEmprestimosPorUsuario();
+				if (!this.listEmprestimoPorUsuario.isEmpty()) {
+					carregarEmprestimo();
+				} else {
+					Alerts.showAlert("Error!", " Este usuário não existe\n Ou não possui empréstimos!", null,
+							AlertType.ERROR);
+					limparListas();
+				}
 			} else {
-				Alerts.showAlert("Error!", " Este usuário não existe\n Ou não possui empréstimos!", null,
-						AlertType.ERROR);
-				limparListas();
+				Alerts.showAlert("Error!", "Necessário informar o CPF!", null, AlertType.ERROR);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,27 +77,31 @@ public class RenovarController implements Initializable {
 
 	@FXML
 	void onRenovarAction(ActionEvent event) {
-		if (this.emprestimos != null) {
-			if (this.emprestimos.getStatus().equals("ativo")) {
-				Emprestimo emprestimo = new Emprestimo();
-				emprestimo = this.controllerMain.findById(this.emprestimos.getId());
-				if (emprestimo != null) {
-					emprestimo.setDt_Devolucao(EmprestimoControllerMain.convertStringEmLocalDate(
-							EmprestimoControllerMain.validDataDevolucao(EmprestimoControllerMain
-									.convertStringEmLocalDate(this.emprestimos.getDt_Devolucao()))));
-					this.controllerMain.renovarEmprestimo(emprestimo);
-					Alerts.showAlert("Renovado!",
-							"Emprestimo renovado por mais 7 dias!\nNova data de devolução: "
-									+ EmprestimoControllerMain.validDataDevolucao(EmprestimoControllerMain
-											.convertStringEmLocalDate(this.emprestimos.getDt_Devolucao())),
-							null, AlertType.ERROR);
-					atualizarTabela();
+		if (!tblEmprestimo.getItems().isEmpty()) {
+			if (this.emprestimos != null) {
+				if (this.emprestimos.getStatus().equals("ativo")) {
+					Emprestimo emprestimo = new Emprestimo();
+					emprestimo = this.controllerMain.findById(this.emprestimos.getId());
+					if (emprestimo != null) {
+						emprestimo.setDt_Devolucao(EmprestimoControllerMain.convertStringEmLocalDate(
+								EmprestimoControllerMain.validDataDevolucao(EmprestimoControllerMain
+										.convertStringEmLocalDate(this.emprestimos.getDt_Devolucao()))));
+						this.controllerMain.renovarEmprestimo(emprestimo);
+						Alerts.showAlert("Renovado!",
+								"Emprestimo renovado por mais 7 dias!\nNova data de devolução: "
+										+ EmprestimoControllerMain.validDataDevolucao(EmprestimoControllerMain
+												.convertStringEmLocalDate(this.emprestimos.getDt_Devolucao())),
+								null, AlertType.INFORMATION);
+						atualizarTabela();
+					}
+				} else {
+					Alerts.showAlert("Error!", "Reseva já inativa!", null, AlertType.ERROR);
 				}
 			} else {
-				Alerts.showAlert("Error!", "Reseva já inativa!", null, AlertType.ERROR);
+				Alerts.showAlert("Error!", "Necessário selecionar reserva!", null, AlertType.ERROR);
 			}
 		} else {
-			Alerts.showAlert("Error!", "Necessário selecionar reserva!", null, AlertType.ERROR);
+			Alerts.showAlert("Error!", "Impossível renovar emprestimo!", null, AlertType.ERROR);
 		}
 	}
 
@@ -113,6 +121,14 @@ public class RenovarController implements Initializable {
 		listEmprestimoPorUsuario.clear();
 		listEmprestimos.clear();
 		tblEmprestimo.getItems().clear();
+	}
+
+	public boolean validBuscaPreenchida() {
+		boolean valid = false;
+		if (!this.txtBusca.getText().isEmpty()) {
+			valid = true;
+		}
+		return valid;
 	}
 
 	public void carregarEmprestimo() {
