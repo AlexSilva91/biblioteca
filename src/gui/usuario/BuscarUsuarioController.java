@@ -58,16 +58,28 @@ public class BuscarUsuarioController {
 		EnderecoController enderecoValidation = new EnderecoController();
 		clearTexts();
 		try {
-			this.usuario = usuarioValidation.buscaUsuario(txtId.getText());
-			if (this.usuario != null) {
-				this.endereco = enderecoValidation.getEnderecoFindByIdUser(usuario.getCpf());
-				setTexts(this.usuario, this.endereco);
-			} else {
-				Alerts.showAlert("ERRO!", "Usuário não encontrado!", null, AlertType.ERROR);
+			if(validBuscaPreenchida()){
+				this.usuario = usuarioValidation.buscaUsuario(txtId.getText());
+				if (this.usuario != null) {
+					this.endereco = enderecoValidation.getEnderecoFindByIdUser(usuario.getCpf());
+					setTexts(this.usuario, this.endereco);
+				} else {
+					Alerts.showAlert("ERRO!", "Usuário não encontrado!", null, AlertType.ERROR);
+				}
+			}else {
+				Alerts.showAlert("ERRO!", "Necessário preencher o campo de busca!", null, AlertType.ERROR);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public boolean validBuscaPreenchida() {
+		boolean valid = false;
+		if (!this.txtId.getText().isEmpty()) {
+			valid = true;
+		}
+		return valid;
 	}
 
 	public void setTexts(Usuario usuario, Endereco endereco) {

@@ -57,18 +57,22 @@ public class AtualizarLivroController implements Initializable {
 	@FXML
 	void onBtnAtualizarAction(ActionEvent event) {
 		try {
-			this.livro.setAno(Integer.valueOf(this.txtAno.getText()));
-			this.livro.setAutor(this.txtAutor.getText().toLowerCase());
-			this.livro.setTitulo(this.txtTitulo.getText().toLowerCase());
-			this.livro.setExemplar(Long.parseLong(this.txtExexmplar.getText()));
-			if (this.checkDisponivel.selectedProperty().getValue()) {
-				this.livro.setStatus(true);
-			}
-			if(this.checkIndispobivel.selectedProperty().getValue()) {
-				this.livro.setStatus(false);
-			}
-			if(this.controller.updateBook(this.livro)) {
-				Alerts.showAlert("Atualizado!", "Dados atualizados!", null, AlertType.INFORMATION);
+			if(validCampos()) {
+				this.livro.setAno(Integer.valueOf(this.txtAno.getText()));
+				this.livro.setAutor(this.txtAutor.getText().toLowerCase());
+				this.livro.setTitulo(this.txtTitulo.getText().toLowerCase());
+				this.livro.setExemplar(Long.parseLong(this.txtExexmplar.getText()));
+				if (this.checkDisponivel.selectedProperty().getValue()) {
+					this.livro.setStatus(true);
+				}
+				if (this.checkIndispobivel.selectedProperty().getValue()) {
+					this.livro.setStatus(false);
+				}
+				if (this.controller.updateBook(this.livro)) {
+					Alerts.showAlert("Atualizado!", "Dados atualizados!", null, AlertType.INFORMATION);
+				} else {
+					Alerts.showAlert("Erro!", "Impossível atualizar dados!", null, AlertType.ERROR);
+				}
 			}else {
 				Alerts.showAlert("Erro!", "Impossível atualizar dados!", null, AlertType.ERROR);
 			}
@@ -114,6 +118,37 @@ public class AtualizarLivroController implements Initializable {
 	@FXML
 	void onBtnVoltarAction(ActionEvent event) {
 		AtualizarLivro.getStage().close();
+	}
+
+	private boolean validarTextFields(List<TextField> listEndereco) {
+		boolean preenchido = false;
+		int index = 0;
+		for (TextField textField : listEndereco) {
+			if (!textField.getText().trim().isEmpty()) {
+				System.out.println("\n" + textField.getId());
+			} else {
+				index += 1;
+			}
+		}
+		if (index <= 0) {
+			preenchido = true;
+		}
+		return preenchido;
+	}
+
+	@SuppressWarnings("unused")
+	private boolean validCampos() {
+		boolean camposPreenchidos = false;
+		List<TextField> textFildes = new ArrayList<TextField>();
+		textFildes.add(this.txtAno);
+		textFildes.add(this.txtAutor);
+		textFildes.add(this.txtExexmplar);
+		textFildes.add(this.txtISBN);
+		textFildes.add(this.txtTitulo);
+		if (validarTextFields(textFildes)) {
+			camposPreenchidos = true;
+		}
+		return camposPreenchidos;
 	}
 
 	@Override

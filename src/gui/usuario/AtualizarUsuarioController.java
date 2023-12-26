@@ -1,6 +1,8 @@
 package gui.usuario;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import gui.util.Alerts;
@@ -64,33 +66,37 @@ public class AtualizarUsuarioController implements Initializable {
 
 	@FXML
 	void onBtnAtualizarAction(ActionEvent event) {
-		/**
-		 * Set usuário
-		 */
-		this.usuario.setCpf(Long.parseLong(this.txtCpf.getText()));
-		this.usuario.setContato(Long.parseLong(this.txtTelefone.getText()));
-		this.usuario.setNome(this.txtNome.getText().toLowerCase());
-		if (this.CheckAtivo.selectedProperty().getValue()) {
-			this.usuario.setStatus(true);
-		}
-		if (this.CheckInativo.selectedProperty().getValue()) {
-			this.usuario.setStatus(false);
-		}
-		/**
-		 * set endereço
-		 */
-		this.endereco.setBairro(this.txtBairro.getText().toLowerCase());
-		this.endereco.setCidade(this.txtCidade.getText().toLowerCase());
-		this.endereco.setComplemento(this.txtComplemento.getText().toLowerCase());
-		this.endereco.setRua(this.txtRua.getText().toLowerCase());
-		this.endereco.setNumero(this.txtNumero.getText().toLowerCase());
-		/**
-		 * Salva usuário e endereço (caso não seja nulo) E limpa os campos preenchidos
-		 */
-		if (this.usuarioValidation.atualizarUsuario(this.usuario, this.endereco)) {
-			Alerts.showAlert("Atualizado!", "Dados atualizados!", null, AlertType.INFORMATION);
+		if (validCampos()) {
+			/**
+			 * Set usuário
+			 */
+			this.usuario.setCpf(Long.parseLong(this.txtCpf.getText()));
+			this.usuario.setContato(Long.parseLong(this.txtTelefone.getText()));
+			this.usuario.setNome(this.txtNome.getText().toLowerCase());
+			if (this.CheckAtivo.selectedProperty().getValue()) {
+				this.usuario.setStatus(true);
+			}
+			if (this.CheckInativo.selectedProperty().getValue()) {
+				this.usuario.setStatus(false);
+			}
+			/**
+			 * set endereço
+			 */
+			this.endereco.setBairro(this.txtBairro.getText().toLowerCase());
+			this.endereco.setCidade(this.txtCidade.getText().toLowerCase());
+			this.endereco.setComplemento(this.txtComplemento.getText().toLowerCase());
+			this.endereco.setRua(this.txtRua.getText().toLowerCase());
+			this.endereco.setNumero(this.txtNumero.getText().toLowerCase());
+			/**
+			 * Salva usuário e endereço (caso não seja nulo) E limpa os campos preenchidos
+			 */
+			if (this.usuarioValidation.atualizarUsuario(this.usuario, this.endereco)) {
+				Alerts.showAlert("Atualizado!", "Dados atualizados!", null, AlertType.INFORMATION);
+			} else {
+				Alerts.showAlert("Erro!", "Impossível atualizar dados!", null, AlertType.ERROR);
+			}
 		} else {
-			Alerts.showAlert("Erro!", "Impossível atualizar dados!", null, AlertType.ERROR);
+			Alerts.showAlert("Erro!", "Usuário não encontrado!", null, AlertType.ERROR);
 		}
 	}
 
@@ -98,16 +104,28 @@ public class AtualizarUsuarioController implements Initializable {
 	void onBtnBuscarAction(ActionEvent event) {
 		clearTexts();
 		try {
-			this.usuario = usuarioValidation.buscaUsuario(this.txtId.getText());
-			if (this.usuario != null) {
-				this.endereco = enderecoValidations.getEnderecoFindByIdUser(this.usuario.getCpf());
-				setTexts(this.usuario, this.endereco);
+			if (validBuscaPreenchida()) {
+				this.usuario = usuarioValidation.buscaUsuario(this.txtId.getText());
+				if (this.usuario != null) {
+					this.endereco = enderecoValidations.getEnderecoFindByIdUser(this.usuario.getCpf());
+					setTexts(this.usuario, this.endereco);
+				} else {
+					Alerts.showAlert("ERRO!", "Usuário não encontrado!", null, AlertType.ERROR);
+				}
 			} else {
-				Alerts.showAlert("ERRO!", "Usuário não encontrado!", null, AlertType.ERROR);
+				Alerts.showAlert("ERRO!", "Necessário preencher o campo de busca!", null, AlertType.ERROR);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public boolean validBuscaPreenchida() {
+		boolean valid = false;
+		if (!this.txtId.getText().isEmpty()) {
+			valid = true;
+		}
+		return valid;
 	}
 
 	public void setTexts(Usuario usuario, Endereco endereco) {
@@ -131,6 +149,40 @@ public class AtualizarUsuarioController implements Initializable {
 			txtNumero.setText(endereco.getNumero());
 			txtRua.setText(endereco.getRua());
 		}
+	}
+
+	@SuppressWarnings("unused")
+	private boolean validCampos() {
+		boolean camposPreenchidos = false;
+		List<TextField> textFildes = new ArrayList<TextField>();
+		textFildes.add(this.txtCidade);
+		textFildes.add(this.txtBairro);
+		textFildes.add(this.txtComplemento);
+		textFildes.add(this.txtRua);
+		textFildes.add(this.txtNumero);
+		textFildes.add(this.txtNome);
+		textFildes.add(this.txtCpf);
+		textFildes.add(this.txtTelefone);
+		if (validarTextFields(textFildes)) {
+			camposPreenchidos = true;
+		}
+		return camposPreenchidos;
+	}
+
+	private boolean validarTextFields(List<TextField> listEndereco) {
+		boolean preenchido = false;
+		int index = 0;
+		for (TextField textField : listEndereco) {
+			if (!textField.getText().trim().isEmpty()) {
+				System.out.println("\n" + textField.getId());
+			} else {
+				index += 1;
+			}
+		}
+		if (index <= 0) {
+			preenchido = true;
+		}
+		return preenchido;
 	}
 
 	public void clearTexts() {
