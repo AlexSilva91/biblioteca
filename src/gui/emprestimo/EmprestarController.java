@@ -29,7 +29,7 @@ public class EmprestarController implements Initializable {
 	private Livros livro = new Livros();
 	private UsuarioController usuarioController = new UsuarioController();
 	private LivroController livroController = new LivroController();
-	private static List<Livros> listLivro = new ArrayList<Livros>();
+	private List<Livros> listLivro = new ArrayList<Livros>();
 	private Emprestimo emprestimo = new Emprestimo();
 	private EmprestimoControllerMain emprestimoControllerMain = new EmprestimoControllerMain();
 
@@ -62,7 +62,8 @@ public class EmprestarController implements Initializable {
 				if (this.livro.getStatus()) {
 					this.emprestimo.setDt_Incial(LocalDate.now());
 					this.emprestimo.setDt_Final(EmprestimoControllerMain
-							.convertStringEmLocalDate(EmprestimoControllerMain.validDataDevolucao(LocalDate.now())));;
+							.convertStringEmLocalDate(EmprestimoControllerMain.validDataDevolucao(LocalDate.now())));
+					;
 					this.emprestimo.setExemplar(this.livro.getExemplar());
 					if (this.livro.getExemplar() > 0) {
 						this.livro.setExemplar(this.livro.getExemplar() - 1);
@@ -123,6 +124,8 @@ public class EmprestarController implements Initializable {
 	@SuppressWarnings("static-access")
 	public void atualizarLivros() {
 		this.cBoxLivros.getItems().clear();
+		this.listLivro.clear();
+		this.listStringLivros.clear();
 		try {
 			this.listLivro = this.livroController.listAll();
 			for (Livros libre : this.listLivro) {

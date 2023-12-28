@@ -35,7 +35,7 @@
                   <Font name="Noto Sans Mono Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtBusca" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="249.0" promptText="Usuário" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+            <TextField fx:id="txtBusca" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="249.0" promptText="CPF" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
                <GridPane.margin>
                   <Insets top="60.0" />
                </GridPane.margin>
