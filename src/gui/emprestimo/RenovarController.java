@@ -84,7 +84,7 @@ public class RenovarController implements Initializable {
 						emprestimo.setDt_Final(EmprestimoControllerMain.convertStringEmLocalDate(
 								EmprestimoControllerMain.validDataDevolucao(EmprestimoControllerMain
 										.convertStringEmLocalDate(this.emprestimos.getDt_Final()))));
-						this.controllerMain.renovarEmprestimo(emprestimo);
+						this.controllerMain.updateEmprestimo(emprestimo);
 						Alerts.showAlert("Renovado!",
 								"Emprestimo renovado por mais 7 dias!\nNova data de devolução: "
 										+ EmprestimoControllerMain.validDataDevolucao(EmprestimoControllerMain

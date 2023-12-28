@@ -43,7 +43,7 @@ public class EmprestimoControllerMain {
 		return this.emprestimoService.findById(id);
 	}
 
-	public void renovarEmprestimo(Emprestimo emprestimo) {
+	public void updateEmprestimo(Emprestimo emprestimo) {
 		try {
 			this.emprestimoService.updateEmprestimo(emprestimo);
 		} catch (Exception e) {

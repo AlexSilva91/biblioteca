@@ -20,8 +20,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.controller.EmprestimoControllerMain;
+import main.controller.LivroController;
 import model.entities.Emprestimo;
 import model.entities.Emprestimos;
+import model.entities.Livros;
 import model.services.EmprestimoService;
 
 public class DevolucaoController implements Initializable {
@@ -57,9 +59,11 @@ public class DevolucaoController implements Initializable {
 	private EmprestimoService emprestimoService = new EmprestimoService();
 	private EmprestimoControllerMain controllerMain = new EmprestimoControllerMain();
 	private Emprestimos emprestimos = new Emprestimos();
+	private LivroController livroController = new LivroController();
 
 	@FXML
 	void onBtnBuscarAction(ActionEvent event) {
+		limparListas();
 		if (validBuscaPreenchida()) {
 			listEmprestimoPorUsuario = buscaEmprestimosPorUsuario();
 			if (!this.listEmprestimoPorUsuario.isEmpty()) {
@@ -83,19 +87,26 @@ public class DevolucaoController implements Initializable {
 					emprestimo = this.controllerMain.findById(this.emprestimos.getId());
 					if (emprestimo != null) {
 						emprestimo.setDt_Devolucao(LocalDate.now());
-						this.controllerMain.renovarEmprestimo(emprestimo);
-						Alerts.showAlert("Devolvido!", "Devolvido!",
-								null, AlertType.INFORMATION);
+						emprestimo.setStatus(false);
+						this.controllerMain.updateEmprestimo(emprestimo);
+						Livros livro = new Livros();
+						livro = this.livroController.getLivroFindById(emprestimo.getLivroId());
+						if (livro != null) {
+							livro.setStatus(true);
+							livro.setExemplar(emprestimo.getExemplar());
+							livroController.updateBook(livro);
+						}
+						Alerts.showAlert("Devolvido!", "Devolvido!", null, AlertType.INFORMATION);
 						atualizarTabela();
 					}
 				} else {
-					Alerts.showAlert("Error!", "Reseva já inativa!", null, AlertType.ERROR);
+					Alerts.showAlert("Error!", "Devolução já realizada!", null, AlertType.ERROR);
 				}
 			} else {
 				Alerts.showAlert("Error!", "Necessário selecionar reserva!", null, AlertType.ERROR);
 			}
 		} else {
-			Alerts.showAlert("Error!", "Impossível renovar emprestimo!", null, AlertType.ERROR);
+			Alerts.showAlert("Error!", "Impossível realizar devolução!", null, AlertType.ERROR);
 		}
 	}
 
